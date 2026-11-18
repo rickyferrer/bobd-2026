@@ -20,7 +20,8 @@
   "u": "turtlecreekchorale.com",
   "l": "https://turtlecreekchorale.com",
   "p": 77,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/07/Gallery-Turtle-Creek-Chorale-60126-D-Magazine-Bret-Redman086.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/07/Gallery-Turtle-Creek-Chorale-60126-D-Magazine-Bret-Redman086.webp",
+  "sl": "https://www.dmagazine.com/arts-entertainment/2026/07/turtle-creek-chorale-showcased-a-pride-as-big-as-texas/"
  },
  {
   "id": 2,
@@ -56,7 +57,8 @@
   "a": "",
   "u": "labreportdallas.com",
   "l": "https://labreportdallas.com",
-  "p": 77
+  "p": 77,
+  "sl": "https://www.dmagazine.com/micropost/the-lab-reports-first-piece-is-about-the-state-of-nonprofits/"
  },
  {
   "id": 5,
@@ -68,7 +70,8 @@
   "u": "jambaloo.live",
   "l": "https://jambaloo.live",
   "p": 77,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/02/JAMBALOO-SPINSTER-21226-01.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/02/JAMBALOO-SPINSTER-21226-01.webp",
+  "sl": "https://www.dmagazine.com/arts-entertainment/2026/06/jambaloo-music-prize/"
  },
  {
   "id": 6,
@@ -106,7 +109,8 @@
   "u": "titas.org",
   "l": "https://titas.org",
   "p": 78,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/TITAS-DANCE-ME.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/TITAS-DANCE-ME.webp",
+  "sl": "https://www.dmagazine.com/philanthropy-nonprofits/2025/01/inside-the-resilience-of-dallas-titas-dance-unbound/"
  },
  {
   "id": 9,
@@ -167,7 +171,8 @@
   "a": "",
   "u": "cityrink.culturemap.com",
   "l": "https://cityrink.culturemap.com",
-  "p": 78
+  "p": 78,
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2017/august/best-roller-rinks-in-dallas-fort-worth/"
  },
  {
   "id": 14,
@@ -191,7 +196,8 @@
   "u": "",
   "l": "",
   "p": 78,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/07/D-Magazine-Nightlife-Klyde-Warren-Park-Independence-Day-Festival-062919-Bret-Redman-004.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/07/D-Magazine-Nightlife-Klyde-Warren-Park-Independence-Day-Festival-062919-Bret-Redman-004.jpg",
+  "sl": "https://www.dmagazine.com/guides/ultimate-outdoor-guide/"
  },
  {
   "id": 16,
@@ -202,7 +208,8 @@
   "a": "11819 Webb Chapel Rd. 972-247-8172.",
   "u": "",
   "l": "",
-  "p": 79
+  "p": 79,
+  "sl": "https://www.dmagazine.com/arts-entertainment/2026/09/dallas-letterboxd/"
  },
  {
   "id": 17,
@@ -213,7 +220,8 @@
   "a": "",
   "u": "ok2bx.org",
   "l": "https://ok2bx.org",
-  "p": 79
+  "p": 79,
+  "sl": "https://www.dmagazine.com/micropost/ok2bx-celebrates-fifth-year-of-its-film-festival/"
  },
  {
   "id": 18,
@@ -239,7 +247,8 @@
   "l": "",
   "p": 79,
   "img": "/assets/photos/killer-whale.jpg",
-  "it": "photo"
+  "it": "photo",
+  "sl": "https://www.dmagazine.com/frontburner/2026/05/everything-we-know-about-the-downtown-dallas-whale-mural/"
  },
  {
   "id": 20,
@@ -251,7 +260,8 @@
   "u": "",
   "l": "",
   "p": 79,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/08/TUREEN-2-scaled.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/08/TUREEN-2-scaled.webp",
+  "sl": "https://www.dmagazine.com/arts-entertainment/2023/10/new-gallery-tureen-pushes-the-envelope-in-oak-cliff/"
  },
  {
   "id": 21,
@@ -263,7 +273,8 @@
   "u": "",
   "l": "",
   "p": 79,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2021/04/Concert-7-2.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2021/04/Concert-7-2.jpg",
+  "sl": "https://www.dmagazine.com/arts-entertainment/2026/07/its-a-grand-grand-granscape-world/"
  },
  {
   "id": 22,
@@ -275,7 +286,8 @@
   "u": "@chateau_show",
   "l": "https://instagram.com/chateau_show",
   "p": 79,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/06/Nature-of-Things-art-gallery-interior-with-Tessa-Granowski.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/06/Nature-of-Things-art-gallery-interior-with-Tessa-Granowski.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/september/chateau-show-aldredge-house/"
  },
  {
   "id": 23,
@@ -310,7 +322,8 @@
   "u": "@jaclynlestudio",
   "l": "https://instagram.com/jaclynlestudio",
   "p": 81,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Jaclyn-Le-portrait-Dmag-August-2026-VERT.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Jaclyn-Le-portrait-Dmag-August-2026-VERT.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/august/hand-painted-signs-dallas-jaclyn-le/"
  },
  {
   "id": 26,
@@ -321,7 +334,8 @@
   "a": "",
   "u": "",
   "l": "",
-  "p": 81
+  "p": 81,
+  "sl": "https://www.dmagazine.com/frontburner/2026/07/all-the-celebrities-spotted-a-dallas-stadium-during-the-world-cup/"
  },
  {
   "id": 27,
@@ -377,7 +391,8 @@
   "u": "",
   "l": "",
   "p": 81,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/HALPERIN-PARK-050726-015.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/HALPERIN-PARK-050726-015.webp",
+  "sl": "https://www.dmagazine.com/frontburner/2026/05/gallery-halperin-park-opens-with-a-ribbon-tying/"
  },
  {
   "id": 32,
@@ -389,7 +404,8 @@
   "u": "",
   "l": "",
   "p": 81,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Cooper-Flagg-D-Magazine-10-15.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Cooper-Flagg-D-Magazine-10-15.webp",
+  "sl": "https://www.dmagazine.com/sports/2026/10/mavericks-season-opener-2026-flagg/"
  },
  {
   "id": 33,
@@ -401,7 +417,8 @@
   "u": "lonestarcircus.com",
   "l": "https://lonestarcircus.com",
   "p": 81,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Lone-Star-Circus-enterance-DMag-November-2026-VERT.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Lone-Star-Circus-enterance-DMag-November-2026-VERT.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/november/lone-star-circus-photo-essay/"
  },
  {
   "id": 34,
@@ -413,7 +430,8 @@
   "u": "",
   "l": "",
   "p": 81,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Lucy-Dodd-Buttercut-DMag-November-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Lucy-Dodd-Buttercut-DMag-November-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/november/power-station-dallas-15-years/"
  },
  {
   "id": 35,
@@ -448,7 +466,8 @@
   "u": "bookertflyinghorse.com",
   "l": "https://bookertflyinghorse.com",
   "p": 82,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/booker-t-washington-flyinghorse-in-the-wings-by-elizabeth-lavin-scaled.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/booker-t-washington-flyinghorse-in-the-wings-by-elizabeth-lavin-scaled.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/august/booker-t-washington-photo-essay/"
  },
  {
   "id": 38,
@@ -460,7 +479,8 @@
   "u": "",
   "l": "",
   "p": 82,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/06/Ron-Corning-and-Miranda-Suarez-portrait-in-studio-Dmag-June-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/06/Ron-Corning-and-Miranda-Suarez-portrait-in-studio-Dmag-June-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/june/ron-corning-miranda-suarez-ntx-now-kera/"
  },
  {
   "id": 39,
@@ -483,7 +503,8 @@
   "u": "",
   "l": "",
   "p": 82,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/Bueckers-Clark-D-Magazine-9-3.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/Bueckers-Clark-D-Magazine-9-3.webp",
+  "sl": "https://www.dmagazine.com/sports/2026/10/strongside-the-show-jon-machota-tries-to-deliver-cowboys-optimism/"
  },
  {
   "id": 41,
@@ -506,7 +527,8 @@
   "u": "",
   "l": "",
   "p": 82,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/04/Will-Evans-portrait-at-Deep-Vellum-exterior.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/04/Will-Evans-portrait-at-Deep-Vellum-exterior.jpg",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/july/dallas-the-city-with-no-culture/dallas-culture-will-evans/"
  },
  {
   "id": 43,
@@ -518,7 +540,8 @@
   "u": "",
   "l": "",
   "p": 82,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/11/2026-10-06T080513Z_170526918_MT1USATODAY30010019_RTRMADP_3_WNBA-PLAYOFFS-DALLAS-WINGS-AT-GOLDEN-STATE-VALKYRIES-scaled.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/11/2026-10-06T080513Z_170526918_MT1USATODAY30010019_RTRMADP_3_WNBA-PLAYOFFS-DALLAS-WINGS-AT-GOLDEN-STATE-VALKYRIES-scaled.webp",
+  "sl": "https://www.dmagazine.com/sports/2026/09/wings-downtown-dallas-bueckers-aac/"
  },
  {
   "id": 44,
@@ -555,7 +578,8 @@
   "u": "",
   "l": "",
   "p": 85,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Lisset-Bell-portrait-DCEO-August-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Lisset-Bell-portrait-DCEO-August-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-ceo/2026/august/good-local-markets-dallas-fresh-produce/"
  },
  {
   "id": 47,
@@ -612,7 +636,8 @@
   "a": "9370 Warren Pkwy., Ste. 130, Frisco. 972-292-9798.",
   "u": "",
   "l": "",
-  "p": 85
+  "p": 85,
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/september-2025/the-best-banh-mi-in-north-texas/"
  },
  {
   "id": 52,
@@ -637,7 +662,8 @@
   "l": "",
   "p": 85,
   "img": "/assets/photos/pho-xom.jpg",
-  "it": "card"
+  "it": "card",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/october/this-carrollton-pho-restaurants-most-popular-dish-is-unlike-anything-in-dallas/"
  },
  {
   "id": 54,
@@ -648,7 +674,8 @@
   "a": "601 S. Main St., Grapevine. 817-670-5729.",
   "u": "",
   "l": "",
-  "p": 86
+  "p": 86,
+  "sl": "https://www.dmagazine.com/food-drink/2026/10/he-ate-over-100-sandwiches-at-weinbergers-deli-then-he-got-his-own/"
  },
  {
   "id": 55,
@@ -660,7 +687,8 @@
   "u": "",
   "l": "",
   "p": 86,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/02/dragon-casa-calamari-dumplings.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/02/dragon-casa-calamari-dumplings.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2026/02/mini-reviews-of-dragon-casa-puerto-cocina-am-fm-milagro-tacos/"
  },
  {
   "id": 56,
@@ -673,7 +701,8 @@
   "l": "",
   "p": 86,
   "img": "/assets/photos/lucia.jpg",
-  "it": "photo"
+  "it": "photo",
+  "sl": "https://www.dmagazine.com/guides/best-dallas-restaurants-right-now/#lucia"
  },
  {
   "id": 57,
@@ -685,7 +714,8 @@
   "u": "",
   "l": "",
   "p": 86,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/01/Beet-root-Dahi-Puri-Bharat-Bhavan.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/01/Beet-root-Dahi-Puri-Bharat-Bhavan.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/january/best-new-restaurants/"
  },
  {
   "id": 58,
@@ -720,7 +750,8 @@
   "u": "",
   "l": "",
   "p": 86,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/06/Lunchbox_Ichigoh-Ramen.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/06/Lunchbox_Ichigoh-Ramen.jpg",
+  "sl": "https://www.dmagazine.com/guides/the-best-ramen-in-dallas/"
  },
  {
   "id": 61,
@@ -757,7 +788,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2021/09/honey-bastard-thunderbird-pie.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2021/09/honey-bastard-thunderbird-pie.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2026/08/thunderbird-pies-is-a-triple-threat-pizzeria/"
  },
  {
   "id": 64,
@@ -781,7 +813,8 @@
   "a": "2540 Old Denton Rd., Ste. 136, Carrollton. 972-810-0034.",
   "u": "",
   "l": "",
-  "p": 89
+  "p": 89,
+  "sl": "https://www.dmagazine.com/food-drink/2026/07/rants-and-raves-the-dallas-food-news-were-most-and-least-excited-about-in-july-2026/"
  },
  {
   "id": 66,
@@ -807,7 +840,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/07/Moore-and-Kelley-reading-at-fond-Dmag-July-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/07/Moore-and-Kelley-reading-at-fond-Dmag-July-2026.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2026/05/best-fish-sandwiches-dallas/"
  },
  {
   "id": 68,
@@ -819,7 +853,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/07/cloud-cafe1-scaled.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/07/cloud-cafe1-scaled.webp",
+  "sl": "https://www.dmagazine.com/guides/the-best-matcha-spots-in-dallas/"
  },
  {
   "id": 69,
@@ -831,7 +866,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/01/noorsha-cafe-simit.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/01/noorsha-cafe-simit.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2023/01/for-takeout-turkish-pastries-visit-this-garland-industrial-park/"
  },
  {
   "id": 70,
@@ -843,7 +879,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/11/Green-Point-snapper-entree-VERT.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/11/Green-Point-snapper-entree-VERT.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2024/01/to-find-green-point-seafood-at-its-best-visit-for-lunch/"
  },
  {
   "id": 71,
@@ -855,7 +892,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/Puerto-Cocina-food-spread-Dmag-May-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/Puerto-Cocina-food-spread-Dmag-May-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/may/puerto-cocina-dallas-new-champion/"
  },
  {
   "id": 72,
@@ -867,7 +905,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/The-Charles-interior-Dmag-September-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/The-Charles-interior-Dmag-September-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/september/the-charles-wood-fire-menu/"
  },
  {
   "id": 73,
@@ -879,7 +918,8 @@
   "u": "",
   "l": "",
   "p": 89,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Jerk-Roasted-Lamb-Shank-Pangea-Dallas-Dmag-September-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Jerk-Roasted-Lamb-Shank-Pangea-Dallas-Dmag-September-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/september/pangea-downtown-dallas-review/"
  },
  {
   "id": 74,
@@ -891,7 +931,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/12/tacos-at-EL-TACO-METRO-VERT.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/12/tacos-at-EL-TACO-METRO-VERT.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2024/04/try-the-whole-roast-pig-at-this-mexico-city-inspired-new-taco-spot/"
  },
  {
   "id": 75,
@@ -903,7 +944,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/07/gonzalez-restaurant.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/07/gonzalez-restaurant.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/june/dallas-tex-mex-institution-gonzalez-gets-a-glow-up/"
  },
  {
   "id": 76,
@@ -915,7 +957,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Nelson-Biak-Molly-Mawi-Biak-portrait-Lyan-Asian-Market-and-Restaurant-Dmag-September-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Nelson-Biak-Molly-Mawi-Biak-portrait-Lyan-Asian-Market-and-Restaurant-Dmag-September-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/september/lyan-asian-market-burmese-refugees/"
  },
  {
   "id": 77,
@@ -927,7 +970,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/08/shrimp-dish-at-Black-Thai-Authentic-Cuisine-VERT.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/08/shrimp-dish-at-Black-Thai-Authentic-Cuisine-VERT.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/august/black-thai-authentic-cuisine-is-a-mothers-tribute-to-her-son/"
  },
  {
   "id": 78,
@@ -966,7 +1010,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/06/Atelie-interior-Dmag-June-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/06/Atelie-interior-Dmag-June-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/june/atelie-restaurant-dallas-art-gallery-experience/"
  },
  {
   "id": 81,
@@ -978,7 +1023,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Hotate-Unagi-Korokke-Sushi-Kozy-Dmag-December-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/10/Hotate-Unagi-Korokke-Sushi-Kozy-Dmag-December-2026.webp",
+  "sl": "https://directory.dmagazine.com/restaurants/naminohana-handroll-bar-and-sushi/"
  },
  {
   "id": 82,
@@ -990,7 +1036,8 @@
   "u": "",
   "l": "",
   "p": 90,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/01/cntrd-juice-victory-park-dallas.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/01/cntrd-juice-victory-park-dallas.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2026/01/cntrd-juice-smoothies-victory-park/"
  },
  {
   "id": 83,
@@ -1015,7 +1062,8 @@
   "u": "",
   "l": "",
   "p": 92,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/08/image-e1567008586590.png"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/08/image-e1567008586590.png",
+  "sl": "https://www.dmagazine.com/publications/d-ceo/2026/june-july/la-casita-bakeshop-expands/"
  },
  {
   "id": 85,
@@ -1037,7 +1085,8 @@
   "a": "2944 Elm St. 214-741-4072.",
   "u": "",
   "l": "",
-  "p": 92
+  "p": 92,
+  "sl": "https://www.dmagazine.com/publications/d-ceo/2017/june/my-office-paula-lambert/"
  },
  {
   "id": 87,
@@ -1049,7 +1098,8 @@
   "u": "",
   "l": "",
   "p": 92,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/04/Tongue-in-Cheek-Ice-Cream-Cereal-and-Milk-ice-cream-2.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/04/Tongue-in-Cheek-Ice-Cream-Cereal-and-Milk-ice-cream-2.jpg",
+  "sl": "https://www.dmagazine.com/guides/31-ice-cream-shops-in-north-texas-for-national-ice-cream-month/"
  },
  {
   "id": 88,
@@ -1062,7 +1112,8 @@
   "l": "",
   "p": 92,
   "img": "/assets/photos/buzz-and-bustle.jpg",
-  "it": "photo"
+  "it": "photo",
+  "sl": "https://directory.dmagazine.com/restaurants/buzz-bustle/"
  },
  {
   "id": 89,
@@ -1073,7 +1124,8 @@
   "a": "4234 Maple Ave. 214-443-7822; 7752 Forest Ln. 214-377-9692.",
   "u": "",
   "l": "",
-  "p": 92
+  "p": 92,
+  "sl": "https://www.dmagazine.com/guides/the-best-fried-chicken-in-dallas/"
  },
  {
   "id": 90,
@@ -1086,7 +1138,8 @@
   "l": "",
   "p": 92,
   "h": "meat",
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/04/Smokey-Joes-BBQ.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/04/Smokey-Joes-BBQ.webp",
+  "sl": "https://www.dmagazine.com/guides/the-best-bbq-joints-in-north-texas/"
  },
  {
   "id": 91,
@@ -1124,7 +1177,8 @@
   "u": "",
   "l": "",
   "p": 93,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/little-heron-bakery.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/little-heron-bakery.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2026/06/reviews-seven-new-downtown-dallas-lunch-spots/"
  },
  {
   "id": 94,
@@ -1135,7 +1189,8 @@
   "a": "317 N. Zang Blvd. 214-941-9941.",
   "u": "",
   "l": "",
-  "p": 93
+  "p": 93,
+  "sl": "https://www.dmagazine.com/guides/afternoon-tea-in-dallas/"
  },
  {
   "id": 95,
@@ -1159,7 +1214,8 @@
   "u": "",
   "l": "",
   "p": 93,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/media/1421170/Kubys.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/media/1421170/Kubys.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2023/08/how-german-food-found-a-home-in-north-texas/"
  },
  {
   "id": 97,
@@ -1205,7 +1261,8 @@
   "l": "",
   "p": 93,
   "h": "meat",
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/11/cattleack-pastrami-sandwich.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/11/cattleack-pastrami-sandwich.webp",
+  "sl": "https://www.dmagazine.com/guides/the-best-bbq-joints-in-north-texas/"
  },
  {
   "id": 101,
@@ -1218,7 +1275,8 @@
   "l": "",
   "p": 93,
   "h": "meat",
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/07/pacheco-chorizo-burger.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/07/pacheco-chorizo-burger.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2024/08/rants-and-raves-what-our-dining-critic-is-most-and-least-excited-about-in-august-2024/"
  },
  {
   "id": 102,
@@ -1231,7 +1289,8 @@
   "l": "",
   "p": 93,
   "h": "meat",
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/Nuri-steak-Dmag-October-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/Nuri-steak-Dmag-October-2026.webp",
+  "sl": "https://www.dmagazine.com/guides/top-steakhouses-dallas/"
  },
  {
   "id": 103,
@@ -1254,7 +1313,8 @@
   "u": "",
   "l": "",
   "p": 95,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/03/Kick-Pleat-interior.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/03/Kick-Pleat-interior.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/march/kick-pleat-wendi-koletar-dallas-store/"
  },
  {
   "id": 105,
@@ -1302,7 +1362,8 @@
   "u": "",
   "l": "",
   "p": 95,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/01/KDBiel_Jun20250338_Karlisch-scaled-e1768247505530.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/01/KDBiel_Jun20250338_Karlisch-scaled-e1768247505530.webp",
+  "sl": "https://www.dmagazine.com/home-garden/2026/01/kurt-bielawski-the-force-behind-kd-biel/"
  },
  {
   "id": 109,
@@ -1315,7 +1376,8 @@
   "l": "",
   "p": 95,
   "img": "/assets/photos/twelve-thirty-four.jpg",
-  "it": "card"
+  "it": "card",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2024/april/twelve-thirty-four-boutique-is-blooming-with-arrangements-and-local-art/"
  },
  {
   "id": 110,
@@ -1338,7 +1400,8 @@
   "u": "",
   "l": "",
   "p": 96,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/07/Half-Price-Bookstore-Collectables-Resized.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/07/Half-Price-Bookstore-Collectables-Resized.jpg",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2022/july/the-store-for-all-sorts-half-price-books-turns-50/"
  },
  {
   "id": 112,
@@ -1361,7 +1424,8 @@
   "u": "",
   "l": "",
   "p": 96,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2021/04/8-NHG-Greenhouse.png"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2021/04/8-NHG-Greenhouse.png",
+  "sl": "https://www.dmagazine.com/publications/d-home/2024/spring/a-north-haven-gardens-coach-is-helping-you-reap-what-you-sow-this-spring/"
  },
  {
   "id": 114,
@@ -1374,7 +1438,8 @@
   "l": "",
   "p": 96,
   "img": "/assets/photos/mimi-s-needlepoint.jpg",
-  "it": "photo"
+  "it": "photo",
+  "sl": "https://www.dmagazine.com/home-garden/2026/05/mimis-needlepoint-shodallas/"
  },
  {
   "id": 115,
@@ -1386,7 +1451,8 @@
   "u": "",
   "l": "",
   "p": 96,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/ylang-23-dallas-boutique-1.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/05/ylang-23-dallas-boutique-1.webp",
+  "sl": "https://www.dmagazine.com/style-beauty-wellness/2026/05/ylang-23-burglary-recovery/"
  },
  {
   "id": 116,
@@ -1434,7 +1500,8 @@
   "l": "https://leatherology.com",
   "p": 99,
   "img": "/assets/photos/leatherology.jpg",
-  "it": "photo"
+  "it": "photo",
+  "sl": "https://www.dmagazine.com/business-economy/2022/05/three-north-texas-businesses-led-by-momrepeneurs/"
  },
  {
   "id": 120,
@@ -1492,7 +1559,8 @@
   "u": "",
   "l": "",
   "p": 99,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/09/terri-in-her-studio.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/09/terri-in-her-studio.jpg",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2019/october/terri-thoman-is-back-to-her-one-true-love-paper/"
  },
  {
   "id": 125,
@@ -1609,7 +1677,8 @@
   "l": "",
   "p": 100,
   "h": "kids",
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/07/Best-Kids-Art-Studio-Oil-and-Cotton-vertical.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/07/Best-Kids-Art-Studio-Oil-and-Cotton-vertical.jpg",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2022/march/oil-and-cotton-moves-to-west-dallas/"
  },
  {
   "id": 135,
@@ -1633,7 +1702,8 @@
   "l": "",
   "p": 100,
   "h": "kids",
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/12/birds-bookstore-in-dallas.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/12/birds-bookstore-in-dallas.webp",
+  "sl": "https://www.dmagazine.com/publications/d-home/2026/spring/dawson-birds-bookstore/"
  },
  {
   "id": 137,
@@ -1717,7 +1787,8 @@
   "u": "",
   "l": "",
   "p": 102,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2018/04/D-Magazine-Record-store-Day-2018-at-Good-Records-042118-Bret-Redman-037.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2018/04/D-Magazine-Record-store-Day-2018-at-Good-Records-042118-Bret-Redman-037.jpg",
+  "sl": "https://www.dmagazine.com/arts-entertainment/2019/03/a-peoples-history-of-good-records/"
  },
  {
   "id": 144,
@@ -1751,7 +1822,8 @@
   "u": "reserveps.com",
   "l": "https://reserveps.com",
   "p": 102,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/20260514_JennaPeffley_ReservePS_DFW_3_STE2_0304.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/09/20260514_JennaPeffley_ReservePS_DFW_3_STE2_0304.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/october/private-airport-lounge-dfw/"
  },
  {
   "id": 147,
@@ -1786,7 +1858,8 @@
   "l": "",
   "p": 102,
   "img": "/assets/photos/shasa-mitcham-at-the-conservatory.jpg",
-  "it": "card"
+  "it": "card",
+  "sl": "https://www.dmagazine.com/publications/d-home/2021/november-december/the-conservatory-shasa-mitcham-holiday-tips/"
  },
  {
   "id": 150,
@@ -1798,7 +1871,8 @@
   "u": "",
   "l": "",
   "p": 105,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/02/amfm-diner.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/02/amfm-diner.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2026/02/mini-reviews-of-dragon-casa-puerto-cocina-am-fm-milagro-tacos/"
  },
  {
   "id": 151,
@@ -1810,7 +1884,8 @@
   "u": "",
   "l": "",
   "p": 105,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/04/D-Magazine-Nightlife-Wild-Detectives-5-year-anniversary-042019-Bret-Redman-074.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/04/D-Magazine-Nightlife-Wild-Detectives-5-year-anniversary-042019-Bret-Redman-074.jpg",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/november/the-best-bookstores-in-dallas/"
  },
  {
   "id": 152,
@@ -1844,7 +1919,8 @@
   "a": "2927 Maple Ave. 469-375-5838.",
   "u": "",
   "l": "",
-  "p": 105
+  "p": 105,
+  "sl": "https://www.dmagazine.com/frontburner/2024/03/d-magazines-50-greatest-stories-heartbroken-at-the-stoneleigh/"
  },
  {
   "id": 155,
@@ -1855,7 +1931,8 @@
   "a": "11407 Emerald St., Ste. 121. 469-522-7399.",
   "u": "",
   "l": "",
-  "p": 105
+  "p": 105,
+  "sl": "https://www.dmagazine.com/guides/where-you-can-try-the-best-korean-food-in-dallas/"
  },
  {
   "id": 156,
@@ -1881,7 +1958,8 @@
   "u": "",
   "l": "",
   "p": 106,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/07/Best-Brewery-Vector-Brewing-interior.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/07/Best-Brewery-Vector-Brewing-interior.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2023/02/lake-highlands-is-officially-home-to-the-best-little-brewpub-in-texas/"
  },
  {
   "id": 158,
@@ -1893,7 +1971,8 @@
   "u": "",
   "l": "",
   "p": 106,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/09/strangeways-external.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/09/strangeways-external.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2025/05/legal-settlement-allows-strangeways-to-remain-open-for-good/"
  },
  {
   "id": 159,
@@ -1916,7 +1995,8 @@
   "u": "",
   "l": "",
   "p": 106,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/02/Neighborhood-Cellar-elizabeth-lavin.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/02/Neighborhood-Cellar-elizabeth-lavin.jpg",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2021/december/neighborhood-cellars-quest-to-help-you-find-the-perfect-party-wine/"
  },
  {
   "id": 161,
@@ -1927,7 +2007,8 @@
   "a": "1911 Montgomery St., Fort Worth. 817-402-9000.",
   "u": "",
   "l": "",
-  "p": 106
+  "p": 106,
+  "sl": "https://www.dmagazine.com/interactive/top-dallas-music-venue/"
  },
  {
   "id": 162,
@@ -1952,7 +2033,8 @@
   "u": "",
   "l": "",
   "p": 106,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/11/saint-valentine-cocktail-1.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2023/11/saint-valentine-cocktail-1.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2023/12/yeah-saint-valentine-is-a-good-bar/"
  },
  {
   "id": 164,
@@ -1964,7 +2046,8 @@
   "u": "",
   "l": "",
   "p": 106,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Mezcal-honey-wings-Sor-Juana-Dmag-September-2026.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/08/Mezcal-honey-wings-Sor-Juana-Dmag-September-2026.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2026/september/sor-juana-bar-snacks/"
  },
  {
   "id": 165,
@@ -2002,7 +2085,8 @@
   "u": "",
   "l": "",
   "p": 107,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/02/The-Charlotte-interior.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/02/The-Charlotte-interior.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/february/the-charlotte-henderson-avenue-review/"
  },
  {
   "id": 168,
@@ -2026,7 +2110,8 @@
   "u": "",
   "l": "",
   "p": 107,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/10/Harwood-Arms-interior.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2022/10/Harwood-Arms-interior.jpg",
+  "sl": "https://www.dmagazine.com/food-drink/2026/10/best-dallas-bars-to-watch-your-college-football-team/"
  },
  {
   "id": 170,
@@ -2038,7 +2123,8 @@
   "u": "",
   "l": "",
   "p": 107,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/03/women-in-pool-at-WorldSprings-in-The-Colony-aerial-VERT.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2025/03/women-in-pool-at-WorldSprings-in-The-Colony-aerial-VERT.webp",
+  "sl": "https://www.dmagazine.com/publications/d-magazine/2025/march/day-trips-waco-surf-worldsprings/"
  },
  {
   "id": 171,
@@ -2051,7 +2137,8 @@
   "l": "",
   "p": 109,
   "img": "/assets/photos/las-almas-rotas.jpg",
-  "it": "photo"
+  "it": "photo",
+  "sl": "https://www.dmagazine.com/micropost/what-did-las-almas-rotas-do-to-anger-the-dallas-observer/"
  },
  {
   "id": 172,
@@ -2062,7 +2149,8 @@
   "a": "1914 Commerce St. 469-776-3700.",
   "u": "",
   "l": "",
-  "p": 109
+  "p": 109,
+  "sl": "https://www.dmagazine.com/frontburner/2017/10/bourbon-banter-how-joints-get-named-in-dallas/"
  },
  {
   "id": 173,
@@ -2074,7 +2162,8 @@
   "u": "",
   "l": "",
   "p": 109,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/07/D-Magazine-Nightlife-Revelers-Hall-0719-Bret-Redman-033.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2019/07/D-Magazine-Nightlife-Revelers-Hall-0719-Bret-Redman-033.jpg",
+  "sl": "https://www.dmagazine.com/guides/the-ultimate-dallas-bar-guide/"
  },
  {
   "id": 174,
@@ -2086,7 +2175,8 @@
   "u": "",
   "l": "",
   "p": 109,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/02/The-Mansion-Bar.jpg"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2024/02/The-Mansion-Bar.jpg",
+  "sl": "https://www.dmagazine.com/guides/the-ultimate-dallas-bar-guide/"
  },
  {
   "id": 175,
@@ -2098,7 +2188,8 @@
   "u": "",
   "l": "",
   "p": 109,
-  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/06/photo-by-james-breeden-_Queens_Head_Pub_024-scaled.webp"
+  "img": "https://assets.dmagstatic.com/wp-content/uploads/2026/06/photo-by-james-breeden-_Queens_Head_Pub_024-scaled.webp",
+  "sl": "https://www.dmagazine.com/food-drink/2026/06/queens-head-pub/"
  },
  {
   "id": 176,
