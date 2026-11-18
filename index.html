@@ -899,7 +899,7 @@ var HS_PORTAL = '477347';
 var HS_FORM = ''; // TODO: paste form GUID (HubSpot > Marketing > Forms)
 // Active deck tab -> contact property set to 'true' on signup. 'all' = FrontBurner only; no extra lists.
 var HS_PROP_BY_TAB = { all: 'receive_frontburner_daily_recap', S: 'receive_things_to_do', H: 'receive_sidedish', C: 'receive_sidedish', D: 'receive_home' };
-/* ---- Google Ad Manager: 970x250 slot after every AD_EVERY winners (Wild Cards don't count), same in Cards and List view ---- */
+/* ---- Google Ad Manager: 970x250 slot after every AD_EVERY grid cells, same in Cards and List view. Wild Cards count (1 cell; 2 on phones where they span both columns) so the rows before an ad end full (36 divides evenly into 2, 3 and 4 columns). ---- */
 var AD_UNIT = '/23367196308/MissEllie_horizontal';
 var AD_EVERY = 36;
 var _ads = { slots: new Map(), seen: new WeakSet(), io: null, n: 0 };
@@ -962,6 +962,7 @@ function syncAds() {
     if (window.IntersectionObserver) adIO().observe(el); else defineAd(el);
   });
 }
+function isPhone() { try { return !!(window.matchMedia && window.matchMedia('(max-width:600px)').matches); } catch (e) { return false; } }
 function withAds(list, perAd, weight) {
   var out = [], acc = 0;
   list.forEach(function (c, i) {
@@ -1061,7 +1062,7 @@ function mapUrl(it) {
 }
 
 class Component extends DCLogic {
-  state = { items: [], order: [], loaded: false, error: false, suit: 'all', view: 'cards', q: '', flipped: {}, backs: {}, toast: false, shuffling: false, detail: null, dealFlip: false, email: '', joined: false, joining: false, joinErr: '', promo: false, promoCal: false, srch: false };
+  state = { phone: isPhone(), items: [], order: [], loaded: false, error: false, suit: 'all', view: 'cards', q: '', flipped: {}, backs: {}, toast: false, shuffling: false, detail: null, dealFlip: false, email: '', joined: false, joining: false, joinErr: '', promo: false, promoCal: false, srch: false };
 
   componentDidMount() {
     var self = this;
@@ -1158,12 +1159,14 @@ class Component extends DCLogic {
     try {
       this._mo = new MutationObserver(run); this._mo.observe(document.body, { childList: true, subtree: true });
       this._rs = run; window.addEventListener('resize', run);
+      this._bp = function () { var ph = isPhone(); if (ph !== self.state.phone) self.setState({ phone: ph }); }; // re-place ads when crossing the phone breakpoint
+      window.addEventListener('resize', this._bp);
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
     } catch (e) {}
     run();
   }
 
-  componentWillUnmount() { try { if (this._mo) this._mo.disconnect(); window.removeEventListener('resize', this._rs); } catch (e) {} if (this._t) clearTimeout(this._t); if (this._tt) clearTimeout(this._tt); try { window.removeEventListener('hashchange', this._hc); } catch (e) {} }
+  componentWillUnmount() { try { if (this._mo) this._mo.disconnect(); window.removeEventListener('resize', this._rs); window.removeEventListener('resize', this._bp); } catch (e) {} if (this._t) clearTimeout(this._t); if (this._tt) clearTimeout(this._tt); try { window.removeEventListener('hashchange', this._hc); } catch (e) {} }
 
   openFromHash(first) {
     var self = this;
@@ -1335,7 +1338,8 @@ class Component extends DCLogic {
     var browsing = !st.q.trim();
     if (browsing && cards.length > 7) cards.splice(7, 0, { isWinner: false, isNews: true, isSub: false, isAd: false, slotCls: 'slot slot-wild' });
     if (browsing && cards.length > 17) cards.splice(17, 0, { isWinner: false, isNews: false, isSub: true, isAd: false, slotCls: 'slot slot-wild' });
-    cards = withAds(cards, AD_EVERY, function (c) { return c.isWinner ? 1 : 0; });
+    var wildW = isPhone() ? 2 : 1; // a Wild Card spans both columns on phones
+    cards = withAds(cards, AD_EVERY, function (c) { return c.isWinner ? 1 : (c.isNews || c.isSub) ? wildW : 0; });
 
     var counts = { S: 0, H: 0, D: 0, C: 0 };
     items.forEach(function (i) { counts[i.s] = (counts[i.s] || 0) + 1; });
