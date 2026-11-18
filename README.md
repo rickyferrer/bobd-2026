@@ -42,7 +42,7 @@ All four properties must exist as fields on the HubSpot form.
 ## Ads (Google Ad Manager)
 
 - Network `23367196308`, unit `/23367196308/MissEllie_horizontal`, size 970x250 only (constants `AD_UNIT`, `AD_EVERY` near the top of the script in `index.html`).
-- One slot after every 36 winners (`AD_EVERY`; the two Wild Cards do not count), none after the last. Same rule in Cards and List view, so the full deck gets 4 ads.
+- One slot after every 36 grid cells (`AD_EVERY`). The two Wild Cards count (1 cell each; 2 on phones, where they span both columns), so the rows before an ad always end full. None after the last card. Same rule in Cards and List view, so the full deck gets 4 ads.
 - GPT loads once (reuses the page's GPT if one exists), `enableServices()` runs once, and each slot is requested only when it is within ~800px of the viewport. Slots are destroyed when filtering, searching or switching views removes them.
 - No fill hides the whole ad block, label included. If an ad blocker stops `gpt.js`, the page adds `ads-off` to `<html>` and the blocks disappear.
 - Check it live with no ad blocker and add `?googfc` to the URL for Google's debug panel. Ads do not fill in previews.
