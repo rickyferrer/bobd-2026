@@ -20,7 +20,7 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 |---|---|
 | `index.html` | The whole page. A Design Component (`<x-dc>`, `{{holes}}`, `<sc-for>`, `<sc-if>`, a `Component extends DCLogic` class with `state`, `setState` and `renderVals()`). CSS lives in the `<helmet>` block. |
 | `support.js` | The DC runtime (React bundled). **Do not edit.** |
-| `data/winners.json` | 180 winners. Fields: `id, s (suit S/H/D/C), c (category), n (name, ALL CAPS), b (blurb), a (address), u, l (link), img, v (video), rv/rl (review url/label), st/sl (story text/url), it (kind: card/photo)`. Photo card = `img` set. |
+| `data/winners.json` | 180 winners. `sl` (story link) was filled from the editors' "Recirc Link" spreadsheets on Nov 18 (95 winners); `REVIEWS`/`STORIES` in `index.html` still win/augment for a few. Fields: `id, s (suit S/H/D/C), c (category), n (name, ALL CAPS), b (blurb), a (address), u, l (link), img, v (video), rv/rl (review url/label), st/sl (story text/url), it (kind: card/photo)`. Photo card = `img` set. |
 | `assets/fonts` | Trial files for Tungsten Comp, Tungsten Cond (Medium) and Futura Std. |
 | `assets/pips`, `assets/photos`, `assets/img` | Suit pips, 29 local photos, cover and hero images. |
 | `vercel.json` | `X-Robots-Tag: noindex, nofollow` until launch, immutable cache on `/assets`, 5-minute cache on `/data`, clean URLs. |
@@ -32,7 +32,7 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 
 **Fonts**
 - Blackest: Adobe Fonts kit `<link rel="stylesheet" href="https://use.typekit.net/swa3yco.css">`. Families `blackest` and `blackest-text`, weights 400 and 700. The kit must list every domain the page runs on.
-- Card titles on card faces: **Tungsten Condensed Medium** (`'Tungsten Cond'`, weight 500, `assets/fonts/TungstenCond-Medium.otf`), letter-spacing 0, title case. This replaced Futura Std at Ricky's request (Nov 18). Sizes are container-query based (`cqw`): front `min(36px,13cqw)`, plate `min(31px,10.9cqw)`, back `min(36px,13cqw)`, line-height 1.05, with `fitNames()` shrinking long names. The ~1.3x scale-up over the old Futura sizes was a guess. A sandbox screenshot (desktop and 390px phone) confirmed the font loads and renders with no overflow, but the titles read a little small next to the old Futura, so a further bump of roughly 1.2x is likely; Ricky has not yet judged it. The phone override `.back .nm{font-size:15px}` was left as it was and may look small.
+- Card titles on card faces: **Tungsten Condensed Medium** (`'Tungsten Cond'`, weight 500, `assets/fonts/TungstenCond-Medium.otf`), letter-spacing 0, title case. This replaced Futura Std at Ricky's request (Nov 18). Sizes are set by Ricky (Nov 18): plain front 52px, photo-card plate 42px, back 42px. They are container-query based so they scale down on phones: front `min(52px,18.4cqw)`, plate `min(42px,14.9cqw)`, back `min(42px,17cqw)` (the back face has padding, so its `cqw` is of the inner width), line-height 1.05, with `fitNames()` shrinking long names. The phone override `.back .nm{font-size:15px}` was left as it was and may look small.
 - Wild Cards: eyebrow "WILD CARD" in Futura Std 700, 11px, uppercase, .18em tracking (same as the category labels). Title in `'Tungsten XComp','Tungsten Comp'`, 700, 46px (40px on phones). **No Tungsten XComp file exists yet.** The `@font-face` expects `assets/fonts/TungstenXComp-Bold.otf` and falls back to Tungsten Comp until it is added.
 - Popup headline and list-view titles still use Blackest.
 - All Tungsten Comp, Tungsten Cond, Futura Std and XComp files are presumed **trial fonts and need licensed web versions before launch.** (Licence status of the Cond Medium file is unconfirmed.)
@@ -59,7 +59,6 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 5. **Go-live SEO:** remove the `noindex` header in `vercel.json`, add the SEO snippet (`#bobd-seo`), exactly one `h1`, proofread data. The old SEO snippet and data JSON were generated before the review links and 115 photos were added and are stale; regenerate if needed.
 6. **Content gaps:** the event calendar entry is all-day (add a start time), the consent line under the signup was asked about and never answered, the editor intro is a draft ("DRAFT INTRO – EDITORS TO REVISE" tag), the video embeds are placeholders.
 7. **Check the 115-photo density on a phone** (it looked fine on desktop), and the crop of wide archive photos on tall cards.
-8. **Tune the Tungsten Cond card title sizes** after Ricky looks at them (front, plate and back; the back of the card was not screenshotted).
 
 ## Gotchas and how to test
 

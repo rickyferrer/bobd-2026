@@ -135,9 +135,9 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 
 /* card titles: Tungsten Condensed Medium, no tracking, title case (modal keeps Blackest) */
 .face.back{container-type:size}
-.card .face .nm{font:500 calc(min(36px,13cqw)*var(--k,1))/1.05 'Tungsten Cond','Arial Narrow',sans-serif;letter-spacing:0;font-synthesis:none;text-transform:none}
-.card .face .plate .nm{font-size:calc(min(31px,10.9cqw)*var(--k,1))}
-.card .face.back .nm{font-size:calc(min(36px,13cqw)*var(--k,1))}
+.card .face .nm{font:500 calc(min(52px,18.4cqw)*var(--k,1))/1.05 'Tungsten Cond','Arial Narrow',sans-serif;letter-spacing:0;font-synthesis:none;text-transform:none}
+.card .face .plate .nm{font-size:calc(min(42px,14.9cqw)*var(--k,1))}
+.card .face.back .nm{font-size:calc(min(42px,17cqw)*var(--k,1))}
 .card .plate{max-width:calc(100% - 28px)}
 @media (max-width:600px){.card .plate{max-width:calc(100% - 16px)}}
 
@@ -406,8 +406,8 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 <section class="tix" aria-label="Best of Big D Party tickets">
 <div class="wrap tix-in">
 <div>
-<p class="eyebrow" style="margin: 0; color: #FFD9DC">Tickets on sale now</p>
-<h2 style="font-size: 101px">The Best of Big D Party</h2>
+<p class="eyebrow" style="margin: 0; color: #FFD9DC; font-size: 14px">Tickets on sale now</p>
+<h2 style="font-size: 80px">The Best of Big D Party</h2>
 <p>Celebrate this year’s winners in person. December 3, 2026 · Astoria Event Venue</p>
 </div>
 <a class="btn btn-cream" href="https://www.dmagazine.com/awards_and_events/best-of-big-d-2026_event/">Get tickets</a>
@@ -418,8 +418,8 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 <section class="intro" aria-labelledby="intro-title">
 <div class="wrap intro-grid">
 <div>
-<p class="eyebrow" style="margin: 0; color: #B00E28">Laying our cards on the table</p>
-<h2 id="intro-title" style="font-size: 101px">Fifty-two years in, we’re still dealing.</h2>
+<p class="eyebrow" style="margin: 0; color: #B00E28; font-size: 14px">Laying our cards on the table</p>
+<h2 id="intro-title" style="font-size: 80px">Fifty-two years in, we’re still dealing.</h2>
 <p>Our very first issue, in October 1974, asked a question on its cover: Power in Dallas — who holds the cards? Fifty-two years and 52 weeks of research later, this year’s Best of Big D answers with a deck of our own.</p>
 <p>Four suits, one for each way we love this city. Every card is a winner, picked by our editors. Some got the full photo-shoot treatment; all of them earned their spot.</p>
 <span class="draft">Draft intro — editors to revise</span>
@@ -760,7 +760,7 @@ Draw a card
 </div>
 </sc-if>
 <div class="acts">
-<sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{d.storyUrl}}">Read: {{d.story}}</a></sc-if>
+<sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{d.storyUrl}}">{{d.storyLabel}}</a></sc-if>
 <sc-if value="{{d.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{d.reviewUrl}}">{{d.reviewLabel}}</a></sc-if>
 <sc-if value="{{d.canWatch}}" hint-placeholder-val="{{ false }}"><button type="button" class="act story" onClick="{{d.watch}}">Watch the video</button></sc-if>
 <sc-if value="{{d.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" href="{{d.link}}">{{d.linkLabel}}</a></sc-if>
@@ -1368,6 +1368,7 @@ class Component extends DCLogic {
         showVideo: !!(st.detail.video && det.v), showCard: !(st.detail.video && det.v),
         canWatch: !!det.v && !st.detail.video,
         story: det.st || '',
+        storyLabel: det.st ? 'Read: ' + det.st : 'Read the story',
         locs: pl.locs, hasLocs: pl.locs.length > 0, note: pl.note, hasNote: !!pl.note
       });
     }
