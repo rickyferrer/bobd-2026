@@ -18,7 +18,7 @@ Push to the production branch; Vercel deploys on every push. There is nothing to
 
 ## HubSpot newsletter signup
 
-In `index.html` set `HS_FORM` (form GUID) near the top of the script. Portal ID is already set. Active deck tab → contact property:
+`HS_PORTAL` and `HS_FORM` (form GUID) are set near the top of the script in `index.html`. Active deck tab → contact property:
 
 | Tab | Property set to `true` |
 |---|---|
