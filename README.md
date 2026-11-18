@@ -34,7 +34,15 @@ All four properties must exist as fields on the HubSpot form.
 
 - Host `data/winners.json` on WordPress (or keep it here) and confirm `DATA_URL` in `index.html`.
 - If the deck is injected into WordPress, render the SEO snippet (`bobd-2026-seo-snippet.html`) server-side inside `#bobd-seo` with the real page URL. One `h1` on the page, title and meta description in Yoast.
-- Replace the trial fonts (Tungsten Comp, Futura Std, Blackest) with licensed web fonts before this is public. Trial licenses usually don't allow public hosting.
+- Blackest now loads from the Adobe Fonts kit (swa3yco); make sure the kit lists every domain this runs on. Replace the remaining trial fonts (Tungsten Comp, Futura Std) with licensed web fonts before this is public. Trial licenses usually don't allow public hosting.
 - Draft copy (intro, methodology) is marked for editors to revise.
 - Proofread winner data and title-cased names. Video embeds for DJ Alaska and Zachary J. Willis are placeholders.
 - Remove the `noindex` header in `vercel.json`.
+
+## Ads (Google Ad Manager)
+
+- Network `23367196308`, unit `/23367196308/MissEllie_horizontal`, size 970x250 only (constants `AD_UNIT`, `AD_EVERY` near the top of the script in `index.html`).
+- One slot after every 36 winners (`AD_EVERY`; the two Wild Cards do not count), none after the last. Same rule in Cards and List view, so the full deck gets 4 ads.
+- GPT loads once (reuses the page's GPT if one exists), `enableServices()` runs once, and each slot is requested only when it is within ~800px of the viewport. Slots are destroyed when filtering, searching or switching views removes them.
+- No fill hides the whole ad block, label included. If an ad blocker stops `gpt.js`, the page adds `ads-off` to `<html>` and the blocks disappear.
+- Check it live with no ad blocker and add `?googfc` to the URL for Google's debug panel. Ads do not fill in previews.

@@ -9,10 +9,9 @@
 <x-dc>
 <helmet>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ultra&amp;display=swap">
+<link rel="stylesheet" href="https://use.typekit.net/swa3yco.css">
 <style>
-@font-face{font-family:'blackest';src:url(/assets/fonts/Blackest-ExtraBold.ttf) format('truetype');font-weight:400 900;font-style:normal;font-display:swap}
-@font-face{font-family:'blackest-text';src:url(/assets/fonts/Blackest-Text-Regular.ttf) format('truetype');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'blackest-text';src:url(/assets/fonts/Blackest-Text-Bold.ttf) format('truetype');font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:'Tungsten XComp';src:url(/assets/fonts/TungstenXComp-Bold.otf) format('opentype');font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'Tungsten Comp';src:url(/assets/fonts/TungstenComp-Bold.otf) format('opentype');font-weight:700;font-style:normal;font-display:swap}
 @font-face{font-family:'Tungsten Comp';src:url(/assets/fonts/TungstenComp-Semibold.otf) format('opentype');font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:'Futura Std';src:url(/assets/fonts/FuturaStd-Book.otf) format('opentype');font-weight:400;font-style:normal;font-display:swap}
@@ -133,10 +132,11 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 @media (prefers-reduced-motion:no-preference){.promo{animation:pfade .25s ease-out}.ticket-wrap{animation:prise .5s cubic-bezier(.2,.7,.2,1)}}
 @media (max-width:640px){.ticket{--r:12px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto var(--sh);-webkit-mask:radial-gradient(circle at 0 0,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 100% 0,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 0 100%,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 100% 100%,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 0 calc(100% - var(--sh)),#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 100% calc(100% - var(--sh)),#0000 calc(var(--r) - .6px),#000 var(--r));-webkit-mask-composite:source-in;mask:radial-gradient(circle at 0 0,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 100% 0,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 0 100%,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 100% 100%,#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 0 calc(100% - var(--sh)),#0000 calc(var(--r) - .6px),#000 var(--r)),radial-gradient(circle at 100% calc(100% - var(--sh)),#0000 calc(var(--r) - .6px),#000 var(--r));mask-composite:intersect}.ticket::before{inset:12px}.tk-main{padding:60px 28px 30px}.promo h2{font:700 54px/.9 'Tungsten Comp','Arial Narrow',sans-serif;font-synthesis:none;letter-spacing:.02em}.tk-sub{font-size:16px}.tk-ctas{margin-top:22px}.ticket .x{top:16px;right:16px}.tk-stub{flex-direction:row;justify-content:center;gap:18px;padding:0 16px;border-left:0;border-top:2px dashed rgba(233,207,142,.6)}.tk-stub .tk-pips{grid-template-columns:repeat(4,24px);gap:8px}.tk-stub .tk-pips img{width:24px;height:24px}.tk-stub b{font-size:34px}}
 
-/* card titles: Tungsten Comp Bold (modal keeps Blackest) */
+/* card titles: Futura Std Regular, no tracking, title case (modal keeps Blackest) */
 .face.back{container-type:size}
-.card .face .nm{font:600 calc(min(48px,16.6cqw)*var(--k,1))/.94 'Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.04em;font-synthesis:none}
-.card .face.back .nm{font-size:calc(min(48px,19cqw)*var(--k,1))}
+.card .face .nm{font:400 calc(min(28px,10cqw)*var(--k,1))/1.1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:0;font-synthesis:none;text-transform:none}
+.card .face .plate .nm{font-size:calc(min(24px,8.4cqw)*var(--k,1))}
+.card .face.back .nm{font-size:calc(min(28px,10cqw)*var(--k,1))}
 .card .plate{max-width:calc(100% - 28px)}
 @media (max-width:600px){.card .plate{max-width:calc(100% - 16px)}}
 
@@ -148,6 +148,13 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .status{margin:16px 2px 0;color:#CFC4AD;font-size:14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:28px;margin-top:18px}
 .slot{perspective:1200px;perspective-origin:50% 50%;min-width:0}
+.slot-ad{grid-column:1/-1;perspective:none}
+.adwrap{display:block;margin:6px 0;text-align:center}
+.adwrap .adlab{margin:0 0 8px;color:#CFC4AD;font-size:11px;font-weight:700;letter-spacing:.16em;line-height:1;text-transform:uppercase}
+.adscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.adbox{width:970px;min-height:250px;margin:0 auto;background:rgba(255,255,255,.04)}
+.list .adwrap{margin:0;padding:24px 4px;border-bottom:1px solid rgba(201,173,107,.25)}
+.ads-off .adwrap{display:none}
 .card{position:relative;aspect-ratio:640/875;transition:transform .3s ease}
 .slot:hover .card{transform:translateY(-6px)}
 .inner{position:absolute;inset:0;transform-style:preserve-3d;transform-origin:50% 50%;will-change:transform;transition:transform .65s cubic-bezier(.45,.05,.2,1)}
@@ -211,8 +218,8 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .joker-sub{background:linear-gradient(155deg,#EDDDB0 0%,#C9AD6B 55%,#B3A16E 100%);color:#141A30;box-shadow:inset 0 0 0 9px #C9AD6B,inset 0 0 0 10px rgba(20,26,48,.6),0 16px 32px rgba(0,0,0,.38)}
 .joker-sub p{color:#1F2742}
 .joker-sub .jk-idx{color:#141A30}
-.jk-idx{font:700 13px/1 'Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.36em;text-transform:uppercase}
-.joker h3{margin:0;font:400 30px/1.06 'blackest-text','blackest','Ultra',Georgia,serif;letter-spacing:0;text-wrap:balance}
+.jk-idx{font:700 11px/1.3 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.joker h3{margin:0;font:700 46px/.95 'Tungsten XComp','Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.02em;font-synthesis:none;text-wrap:balance}
 .joker p{margin:0;font-size:14.5px;line-height:1.5}
 .jform{margin-top:auto;display:flex;flex-direction:column;gap:8px}
 .jform input{height:46px;border:0;border-radius:2px;padding:0 12px;font:400 15px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;color:#17171A;background:#FBF8F1}
@@ -298,7 +305,7 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .tix h2,.intro h2,.rules h2,.idx b,.nm,.dmark,.joker h3,.dlogo,.det h3{font-weight:700;font-synthesis:style}
 .h1 .a,.h1 .b{font-size:clamp(96px,12.8vw,208px);letter-spacing:.01em}
 .yr b{font-size:30px}.step-n{font-size:30px}.step h3{font-size:27px;letter-spacing:.04em}
-.deck-head h2{font-size:clamp(64px,7vw,104px)}.jk-idx{font-size:18px;letter-spacing:.3em}
+.deck-head h2{font-size:clamp(64px,7vw,104px)}
 .rule h3{font-size:28px;letter-spacing:.04em}.sub h2{font-size:clamp(68px,8.4vw,128px)}
 .logo-h1{margin:0 0 30px;line-height:0}
 .bobd-logo{display:block;width:100%;max-width:460px;height:auto}
@@ -355,7 +362,7 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .act{min-height:34px;padding:0 8px;font-size:10px;letter-spacing:.06em}
 .act.hide-sm{display:none}
 .slot-wild{grid-column:span 2}.joker{aspect-ratio:auto;min-height:calc((100vw - 46px)/2*1.367);padding:22px 20px}
-.joker-sub img{width:34%}.joker h3{font-size:27px}
+.joker-sub img{width:34%}.joker h3{font-size:40px}
 .rules{padding:56px 0}
 .sub{padding:56px 0}.sub-cover{max-width:250px}.sub p{font-size:17px}
 .modal{padding:10px;align-items:flex-start}
@@ -599,6 +606,12 @@ Draw a card
 <a class="btn btn-gold" href="https://www.dmagazine.com/site/subscribe/">Subscribe</a>
 </div>
 </sc-if>
+<sc-if value="{{c.isAd}}" hint-placeholder-val="{{ false }}">
+<aside class="adwrap" aria-label="Advertisement">
+<p class="adlab">Advertisement</p>
+<div class="adscroll"><div class="adbox"></div></div>
+</aside>
+</sc-if>
 </div>
 </sc-for>
 </div>
@@ -608,6 +621,7 @@ Draw a card
 <sc-if value="{{isList}}" hint-placeholder-val="{{ false }}">
 <div class="list">
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<sc-if value="{{r.isWinner}}" hint-placeholder-val="{{ true }}">
 <article class="row" id="{{r.anchor}}">
 <div class="row-cat"><img src="{{r.gpip}}" alt=""><span class="lab">{{r.cat}}</span></div>
 <div class="row-main">
@@ -624,6 +638,13 @@ Draw a card
 <button type="button" class="act" onClick="{{r.share}}">Share</button>
 </div>
 </article>
+</sc-if>
+<sc-if value="{{r.isAd}}" hint-placeholder-val="{{ false }}">
+<aside class="adwrap" aria-label="Advertisement">
+<p class="adlab">Advertisement</p>
+<div class="adscroll"><div class="adbox"></div></div>
+</aside>
+</sc-if>
 </sc-for>
 </div>
 </sc-if>
@@ -815,6 +836,7 @@ function niceName(n) {
 function slugify(n) {
   return n.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
+var NAME_FIX = { "L'EPOQUE PARFUMS": "L'Epoque Parfums", "BELL'INVITO": "Bell'Invito", 'AM/FM': 'AM/FM', 'BOOGIES, DISCO(NNECTED)': 'Boogies, Disco(nnected)', 'THE STANDARD MCKINNEY': 'The Standard McKinney' };
 function prep(items) {
   var seen = {};
   items.forEach(function (it) {
@@ -822,7 +844,8 @@ function prep(items) {
     if (seen[s]) s = s + '-' + it.id;
     seen[s] = 1;
     it.slug = s;
-    it.nt = niceName(it.n);
+    it.dn = NAME_FIX[it.n] || niceName(it.n); // display name: title case
+    it.nt = it.dn;
     var rv = REVIEWS[it.n]; if (rv && !it.rv) { it.rv = rv.u; it.rl = rv.l; }
     var sy = STORIES[it.n]; if (sy && !it.sl) { it.sl = sy.u; it.st = sy.t; }
   });
@@ -870,6 +893,82 @@ var HS_PORTAL = '477347';
 var HS_FORM = ''; // TODO: paste form GUID (HubSpot > Marketing > Forms)
 // Active deck tab -> contact property set to 'true' on signup. 'all' = FrontBurner only; no extra lists.
 var HS_PROP_BY_TAB = { all: 'receive_frontburner_daily_recap', S: 'receive_things_to_do', H: 'receive_sidedish', C: 'receive_sidedish', D: 'receive_home' };
+/* ---- Google Ad Manager: 970x250 slot after every AD_EVERY winners (Wild Cards don't count), same in Cards and List view ---- */
+var AD_UNIT = '/23367196308/MissEllie_horizontal';
+var AD_EVERY = 36;
+var _ads = { slots: new Map(), seen: new WeakSet(), io: null, n: 0 };
+function loadGpt() {
+  var gt = (window.googletag = window.googletag || { cmd: [] });
+  // Reuse the host page's GPT if there is one; never load it twice.
+  if (!document.querySelector('script[src*="/tag/js/gpt.js"]')) {
+    var sc = document.createElement('script');
+    sc.async = true;
+    sc.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js';
+    sc.onerror = function () { document.documentElement.classList.add('ads-off'); }; // blocked: don't leave empty 250px bands
+    document.head.appendChild(sc);
+  }
+  if (!window.__adsReady) {
+    window.__adsReady = true;
+    gt.cmd.push(function () {
+      if (typeof gt.setConfig === 'function') gt.setConfig({ collapseDiv: 'ON_NO_FILL' });
+      else gt.pubads().collapseEmptyDivs();
+      gt.pubads().addEventListener('slotRenderEnded', function (ev) {
+        if (!ev.isEmpty) return;
+        var el = document.getElementById(ev.slot.getSlotElementId());
+        var w = el && el.closest('.adwrap');
+        if (w) w.style.display = 'none'; // no fill: hide the "Advertisement" label too
+      });
+      gt.enableServices(); // once, not per slot
+    });
+  }
+  return gt;
+}
+function defineAd(el) {
+  var gt = loadGpt();
+  gt.cmd.push(function () {
+    if (!el.isConnected || _ads.slots.has(el)) return;
+    var slot = gt.defineSlot(AD_UNIT, [970, 250], el.id);
+    if (!slot) return;
+    slot.addService(gt.pubads());
+    _ads.slots.set(el, slot);
+    gt.display(el.id);
+  });
+}
+function adIO() {
+  if (_ads.io) return _ads.io;
+  _ads.io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { _ads.io.unobserve(e.target); defineAd(e.target); } });
+  }, { rootMargin: '800px 0px' }); // request shortly before the slot scrolls into view
+  return _ads.io;
+}
+function syncAds() {
+  if (document.documentElement.classList.contains('ads-off')) return;
+  _ads.slots.forEach(function (slot, el) { // destroy slots whose element React removed
+    if (el.isConnected) return;
+    _ads.slots.delete(el);
+    var gt = window.googletag;
+    if (gt && gt.cmd) gt.cmd.push(function () { gt.destroySlots([slot]); });
+  });
+  [].forEach.call(document.querySelectorAll('.adbox'), function (el) {
+    if (_ads.seen.has(el)) return;
+    _ads.seen.add(el);
+    if (!el.id) el.id = 'page-ad-' + (++_ads.n);
+    if (window.IntersectionObserver) adIO().observe(el); else defineAd(el);
+  });
+}
+function withAds(list, perAd, weight) {
+  var out = [], acc = 0;
+  list.forEach(function (c, i) {
+    out.push(c);
+    acc += weight(c);
+    if (acc >= perAd && i < list.length - 1) { // none after the last
+      out.push({ isWinner: false, isNews: false, isSub: false, isAd: true, slotCls: 'slot slot-ad' });
+      acc = 0;
+    }
+  });
+  return out;
+}
+
 var PARTY = { title: 'The Best of Big D Party', where: 'Astoria Event Venue', start: '20261203', end: '20261204', url: 'https://www.dmagazine.com/awards_and_events/best-of-big-d-2026_event/', desc: 'Celebrate this year’s Best of Big D winners in person. Tickets and details: ' };
 function googleCalUrl() {
   return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(PARTY.title) + '&dates=' + PARTY.start + '/' + PARTY.end + '&details=' + encodeURIComponent(PARTY.desc + PARTY.url) + '&location=' + encodeURIComponent(PARTY.where);
@@ -1049,7 +1148,7 @@ class Component extends DCLogic {
   watchFit() {
     var self = this;
     if (this._mo) return;
-    var run = function () { clearTimeout(self._ft); self._ft = setTimeout(function () { fitNames(); fitBlurbs(); }, 80); };
+    var run = function () { clearTimeout(self._ft); self._ft = setTimeout(function () { fitNames(); fitBlurbs(); syncAds(); }, 80); };
     try {
       this._mo = new MutationObserver(run); this._mo.observe(document.body, { childList: true, subtree: true });
       this._rs = run; window.addEventListener('resize', run);
@@ -1195,19 +1294,19 @@ class Component extends DCLogic {
     var art = it.it === 'card';
     var kind = art ? 'is-art' : (it.img ? 'is-photo' : 'is-plain');
     return {
-      isWinner: true, isNews: false, isSub: false, slotCls: 'slot',
+      isWinner: true, isNews: false, isSub: false, isAd: false, slotCls: 'slot',
       cardCls: 'card' + (flipped ? ' is-flipped' : ''),
       frontCls: 'face front ' + kind + (red ? ' is-red' : ' is-ink'),
       isArt: !!it.img, notArt: !it.img, isPhoto: it.it === 'photo', isPlain: !it.img,
       img: it.img || '', pip: PIP[it.s], gpip: GPIP[it.s],
       slug: it.slug, anchor: 'w-' + it.slug, href: '#w-' + it.slug,
       alt: it.nt + ', ' + it.c + ' — The Best of Big D 2026',
-      cat: it.c, name: it.n, blurb: it.b, addr: it.a, hasAddr: !!it.a,
+      cat: it.c, name: it.dn, blurb: it.b, addr: it.a, hasAddr: !!it.a,
       link: it.l, hasLink: !!it.l, linkLabel: (it.u && it.u.charAt(0) === '@') ? 'Instagram' : 'Website',
       hasStory: !!it.sl, storyUrl: it.sl || '',
       mapUrl: mapUrl(it), hasVideo: !!it.v,
       frontTab: flipped ? -1 : 0, backTab: flipped ? 0 : -1, backHidden: flipped ? 'false' : 'true',
-      ariaFront: SUIT_BY[it.s].suit + ', ' + it.c + ': ' + it.n + '. Flip for details.',
+      ariaFront: SUIT_BY[it.s].suit + ', ' + it.c + ': ' + it.dn + '. Flip for details.',
       delay: ((i % 24) * 40) + 'ms',
       deckStyle: 'transition-delay:' + ((i % 24) * 40) + 'ms;background-image:url(' + BACKS[(this.state.backs[it.id] || 0) % 3] + ')',
       hasReview: !!it.rv, reviewUrl: it.rv || '', reviewLabel: it.rl || 'Read the review',
@@ -1226,9 +1325,11 @@ class Component extends DCLogic {
     var cards = list.map(function (it, i) { return self.cardVals(it, i); });
     var rows = st.view === 'list' ? cards : [];
     if (st.view === 'list') cards = [];
+    rows = withAds(rows, AD_EVERY, function (c) { return c.isWinner ? 1 : 0; });
     var browsing = !st.q.trim();
-    if (browsing && cards.length > 7) cards.splice(7, 0, { isWinner: false, isNews: true, isSub: false, slotCls: 'slot slot-wild' });
-    if (browsing && cards.length > 17) cards.splice(17, 0, { isWinner: false, isNews: false, isSub: true, slotCls: 'slot slot-wild' });
+    if (browsing && cards.length > 7) cards.splice(7, 0, { isWinner: false, isNews: true, isSub: false, isAd: false, slotCls: 'slot slot-wild' });
+    if (browsing && cards.length > 17) cards.splice(17, 0, { isWinner: false, isNews: false, isSub: true, isAd: false, slotCls: 'slot slot-wild' });
+    cards = withAds(cards, AD_EVERY, function (c) { return c.isWinner ? 1 : 0; });
 
     var counts = { S: 0, H: 0, D: 0, C: 0 };
     items.forEach(function (i) { counts[i.s] = (counts[i.s] || 0) + 1; });
