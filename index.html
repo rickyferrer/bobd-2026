@@ -18,9 +18,17 @@
 @font-face{font-family:'Tungsten Cond';src:url(/assets/fonts/TungstenCond-Medium.otf) format('opentype');font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:'Futura Std';src:url(/assets/fonts/FuturaStd-Book.otf) format('opentype');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Futura Std';src:url(/assets/fonts/FuturaStd-Bold.otf) format('opentype');font-weight:700;font-style:normal;font-display:swap}
-body{margin:0;background:#141A30;font-family:'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;color:#17171A;-webkit-font-smoothing:antialiased}
-a{color:#B00E28}a:hover{color:#7A0A14}
-*,*::before,*::after{box-sizing:border-box}
+/* Scoped to the deck so the page can be injected into another site (WordPress) without restyling the host.
+   Standalone, #dc-root is a direct child of <body>; embedded, it is not. */
+body:has(>#dc-root){margin:0;background:#141A30}
+#dc-root{font-family:'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;font-size:16px;line-height:normal;color:#17171A;-webkit-font-smoothing:antialiased;text-align:left}
+#dc-root,#dc-root *,#dc-root *::before,#dc-root *::after{box-sizing:border-box}
+/* Host themes style bare elements (p, span, h2...). Re-inherit the inherited text properties with type-only selectors:
+   (0,0,3) beats a theme's p{} / span{} but loses to every class rule below, so nothing the deck sets explicitly changes. */
+div div :is(p,li,span,label,small,strong,em,time,b,i,div){font-family:inherit;font-size:inherit;line-height:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit}
+div div :is(h1,h2,h3,h4,h5,h6){font-family:inherit;line-height:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit}
+.sc-host{font-family:inherit;font-size:inherit;line-height:inherit;color:inherit}
+div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:2px;font:600 14px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:background-color .2s,color .2s,transform .2s}
@@ -55,7 +63,7 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .fan-1{transform:translateX(-50%) rotate(-7.5deg)}.fan-1:hover{transform:translateX(-50%) rotate(-7.5deg) translateY(-22px)}
 .fan-2{transform:translateX(-50%) rotate(7.5deg)}.fan-2:hover{transform:translateX(-50%) rotate(7.5deg) translateY(-22px)}
 .fan-3{transform:translateX(-50%) rotate(22deg)}.fan-3:hover{transform:translateX(-50%) rotate(22deg) translateY(-22px)}
-.fan-hint{position:absolute;left:0;right:0;bottom:-6px;text-align:center;color:#C9AD6B;font:500 13px/1.3 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.08em}
+.fan-hint{position:absolute;left:0;right:0;bottom:-6px;margin:1em 0;text-align:center;color:#C9AD6B;font:500 13px/1.3 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.08em}
 .tix{background:linear-gradient(100deg,#6E0912 0%,#A40D22 45%,#D3263A 100%);color:#fff}
 .tix-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px;padding:26px 32px}
 .tix h2{margin:6px 0 4px;font:700 clamp(44px,4.4vw,60px)/.9 'Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.02em;text-transform:uppercase;font-synthesis:none}
@@ -799,9 +807,31 @@ Draw a card
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"showTickets":{"editor":"boolean","default":true,"section":"Launch"},"showPromo":{"editor":"boolean","default":true,"section":"Launch"},"table":{"editor":"enum","options":["navy","green","oxblood"],"default":"navy","section":"Look"},"$preview":{"width":1440,"height":6200}}'>
-var DATA_URL = '/data/winners.json';
-var PIP = { S: '/assets/pips/05f322ff.svg', H: '/assets/pips/758e7c02.svg', D: '/assets/pips/d8acbffb.svg', C: '/assets/pips/429bf106.svg' };
-var GPIP = { S: '/assets/pips/226034a1.svg', H: '/assets/pips/a0e81c42.svg', D: '/assets/pips/b8750308.svg', C: '/assets/pips/c82dd8b0.svg' };
+/* Where the app is served from. Standalone this is the page's own origin; when the page is injected into another site (WordPress),
+   the host rewrites <script src="./support.js"> to the app origin, so we derive the base from that tag.
+   Override with window.BOBD_BASE = 'https://bobd2026.dmagazine.com' before this script runs. */
+var APP_BASE = (function () {
+  try {
+    if (window.BOBD_BASE) return String(window.BOBD_BASE).replace(/\/+$/, '');
+    var el = document.querySelector('script[src*="support.js"]');
+    if (el && el.src) return el.src.replace(/\/support\.js(\?.*)?$/, '');
+  } catch (e) {}
+  return '';
+})();
+function appUrl(u) { return (typeof u === 'string' && u.charAt(0) === '/' && u.charAt(1) !== '/') ? APP_BASE + u : u; }
+// Embedded cross-origin: the inline @font-face URLs may not have been rewritten by the host, so declare the fonts again with absolute URLs (last rule wins).
+(function () {
+  try {
+    if (!APP_BASE || APP_BASE.indexOf(location.origin) === 0) return;
+    var f = function (fam, file, w) { return "@font-face{font-family:'" + fam + "';src:url(" + APP_BASE + '/assets/fonts/' + file + ") format('opentype');font-weight:" + w + ';font-style:normal;font-display:swap}'; };
+    var st = document.createElement('style');
+    st.textContent = f('Tungsten XComp', 'TungstenXComp-Bold.otf', 700) + f('Tungsten Comp', 'TungstenComp-Bold.otf', 700) + f('Tungsten Comp', 'TungstenComp-Semibold.otf', 600) + f('Tungsten Cond', 'TungstenCond-Medium.otf', 500) + f('Futura Std', 'FuturaStd-Book.otf', 400) + f('Futura Std', 'FuturaStd-Bold.otf', 700);
+    (document.body || document.head).appendChild(st);
+  } catch (e) {}
+})();
+var DATA_URL = appUrl('/data/winners.json');
+var PIP = { S: appUrl('/assets/pips/05f322ff.svg'), H: appUrl('/assets/pips/758e7c02.svg'), D: appUrl('/assets/pips/d8acbffb.svg'), C: appUrl('/assets/pips/429bf106.svg') };
+var GPIP = { S: appUrl('/assets/pips/226034a1.svg'), H: appUrl('/assets/pips/a0e81c42.svg'), D: appUrl('/assets/pips/b8750308.svg'), C: appUrl('/assets/pips/c82dd8b0.svg') };
 var SUITS = [
   { k: 'S', label: 'Culture', suit: 'Spades' },
   { k: 'H', label: 'Food & Dining', suit: 'Hearts' },
@@ -811,10 +841,10 @@ var SUITS = [
 var SUIT_BY = { S: SUITS[0], H: SUITS[1], D: SUITS[2], C: SUITS[3] };
 var TABLES = { navy: '#141A30', green: '#1C3A2B', oxblood: '#3B0C14' };
 var FAN = [
-  { k: 'S', img: '/assets/photos/zachary-j-willis.jpg' },
-  { k: 'H', img: '/assets/photos/pho-xom.jpg' },
-  { k: 'D', img: '/assets/photos/twelve-thirty-four.jpg' },
-  { k: 'C', img: '/assets/photos/dj-alaska.jpg' }
+  { k: 'S', img: appUrl('/assets/photos/zachary-j-willis.jpg') },
+  { k: 'H', img: appUrl('/assets/photos/pho-xom.jpg') },
+  { k: 'D', img: appUrl('/assets/photos/twelve-thirty-four.jpg') },
+  { k: 'C', img: appUrl('/assets/photos/dj-alaska.jpg') }
 ];
 var SMALL = { and: 1, of: 1, the: 1, for: 1, at: 1, in: 1, on: 1, to: 1, by: 1, y: 1, a: 1 };
 var KEEP = { BBQ: 1, DFW: 1, DJ: 1, FM: 1, IMAX: 1, KERA: 1, KTCK: 1, NTX: 1, SMU: 1, TITAS: 1, VCS: 1, XD: 1, KD: 1, DAQ: 1, CNTRD: 1, NH: 1 };
@@ -833,6 +863,7 @@ var NAME_FIX = { "L'EPOQUE PARFUMS": "L'Epoque Parfums", "BELL'INVITO": "Bell'In
 function prep(items) {
   var seen = {};
   items.forEach(function (it) {
+    it.img = appUrl(it.img); if (typeof it.v === 'string') it.v = appUrl(it.v); // data paths are root-relative
     var s = slugify(it.n) || ('winner-' + it.id);
     if (seen[s]) s = s + '-' + it.id;
     seen[s] = 1;
@@ -844,7 +875,7 @@ function prep(items) {
   });
   return items;
 }
-var BACKS = ['/assets/img/dc82134b.jpg', '/assets/img/bee07b30.jpg', '/assets/img/d85b0f00.jpg'];
+var BACKS = [appUrl('/assets/img/dc82134b.jpg'), appUrl('/assets/img/bee07b30.jpg'), appUrl('/assets/img/d85b0f00.jpg')];
 var STORIES = {
   'STARSHIP BAGEL': { u: 'https://www.dmagazine.com/publications/d-magazine/2024/april/how-lewisville-became-the-bagel-capital-of-america/', t: 'How Lewisville Became the Bagel Capital of America' }
 };
