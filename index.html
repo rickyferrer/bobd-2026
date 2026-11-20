@@ -184,7 +184,6 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .art{position:absolute;inset:0}
 .plate{z-index:2;position:absolute;left:14px;bottom:14px;max-width:70%;display:flex;flex-direction:column;gap:4px;padding:9px 11px;background:#FBF8F1;border-radius:4px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
 .plate .lab{font-size:10px}.plate .nm{font-size:15px}
-.vid{position:absolute;top:12px;right:12px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:7px 10px 7px 9px;border-radius:999px;background:rgba(20,26,48,.88);color:#F7F1E5;font:600 11px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase}
 .deckback{position:absolute;inset:0;z-index:5;border-radius:14px;background-color:#141A30;background-size:cover;background-position:center;opacity:0;pointer-events:none;transition:opacity .45s ease;box-shadow:inset 0 0 0 1px rgba(201,173,107,.5)}
 .dmark{width:58px;height:58px;display:flex;align-items:center;justify-content:center;background:#C8102E;border:2px solid #C9AD6B;color:#fff;font:400 38px/1 'blackest-text','blackest','Ultra',Georgia,serif;padding-top:4px}
 .grid.is-shuffling .deckback{opacity:1;transition-duration:.18s;transition-delay:0s !important}
@@ -282,8 +281,6 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 @keyframes dealA{0%{transform:translateY(70px) rotateY(88deg) scale(.85);opacity:0}100%{transform:none;opacity:1}}
 @keyframes dealB{0%{transform:translateY(70px) rotateY(-88deg) scale(.85);opacity:0}100%{transform:none;opacity:1}}
 .big .nm{font-size:28px}.big.is-photo .nm{font-size:22px}
-.video{position:relative;aspect-ratio:4/5;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.video video{display:block;width:100%;height:100%;object-fit:cover}
 .det{display:flex;flex-direction:column;gap:14px;padding-top:6px;min-width:0}
 .det h3{margin:0;font:400 34px/1.04 'blackest-text','blackest','Ultra',Georgia,serif;color:#17171A;text-wrap:balance;overflow-wrap:anywhere}
 .det .full{margin:0;font-size:17px;line-height:1.62;color:#2E2A25}
@@ -311,7 +308,7 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .bobd-logo{display:block;width:100%;max-width:460px;height:auto}
 @media (max-width:600px){.bobd-logo{max-width:300px}.logo-h1{margin-bottom:22px}}
 @media (min-width:981px){.hero-grid{padding:36px 0 44px;min-height:0}.fan{--cw:min(196px,calc((100vw - 104px)*.15));height:calc(var(--cw)*2.25)}.fan::before{top:calc(var(--cw)*1.38)}.fan-card{width:var(--cw);bottom:calc(var(--cw)*.33);border-width:6px;border-radius:15px}.fan-card img.fan-img{border-radius:9px}.fan-lab{left:12px;right:auto;bottom:14px;max-width:calc(var(--cw)*.5);justify-content:flex-start;align-items:flex-start;text-align:left;font-size:11px;letter-spacing:.14em;line-height:1.25}.fan-2 .fan-lab{max-width:calc(var(--cw)*.7);font-size:clamp(9px,calc(var(--cw)*.0625),11px)}.fan-2 .fan-txt{text-wrap:balance}.fan-lab img{margin-top:1px;flex:none}.bobd-logo{max-width:345px}.logo-h1{margin-bottom:16px}.dek{margin-bottom:22px}.pub{margin-top:14px}}
-@media (max-width:980px){.hero-grid,.intro-grid,.sub-grid{grid-template-columns:minmax(0,1fr)}.fan{height:470px}.sheet{grid-template-columns:minmax(0,1fr);max-width:560px}.big,.video{max-width:300px;width:100%;margin:0 auto}}
+@media (max-width:980px){.hero-grid,.intro-grid,.sub-grid{grid-template-columns:minmax(0,1fr)}.fan{height:470px}.sheet{grid-template-columns:minmax(0,1fr);max-width:560px}.big{max-width:300px;width:100%;margin:0 auto}}
 @media (max-width:600px){
 .wrap{padding:0 16px}
 .hero::before{inset:8px}.hero::after{inset:12px}
@@ -357,7 +354,6 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .lab{font-size:10px;letter-spacing:.12em}
 .nm{font-size:14px}.is-photo .nm{font-size:12.5px}
 .plate{left:8px;bottom:8px;max-width:80%;padding:6px 7px}.plate .lab{font-size:10px;letter-spacing:.1em}.plate .nm{font-size:11.5px}
-.vid{top:7px;right:7px;padding:5px 7px;font-size:10px}
 .dmark{width:40px;height:40px;font-size:26px}
 .back{padding:12px 11px 10px;gap:6px}.back::before{inset:4px}
 .back .nm{font-size:15px}.blurb{display:none}.btxt{flex:0 0 auto}.addr{font-size:12px}
@@ -375,7 +371,7 @@ a{color:#B00E28}a:hover{color:#7A0A14}
 .modal{padding:10px;align-items:flex-start}
 .sheet{padding:60px 18px 22px;gap:22px;border-radius:12px}
 .det h3{font-size:26px}.det .full{font-size:16px}
-.big,.video{max-width:220px}
+.big{max-width:220px}
 }
 @media (prefers-reduced-motion:reduce){.inner,.card,.fan-card,.deckback,.face{transition:none !important}.grid.is-shuffling .card,.deal-a,.deal-b{animation:none !important}}
 </style>
@@ -533,7 +529,8 @@ Draw a card
 <div class="inner">
 <button type="button" class="{{c.frontCls}}" onClick="{{c.flip}}" tabIndex="{{c.frontTab}}" aria-label="{{c.ariaFront}}">
 <sc-if value="{{c.isArt}}" hint-placeholder-val="{{ false }}">
-<img class="art" src="{{c.img}}" alt="{{c.alt}}" loading="lazy" decoding="async">
+<sc-if value="{{c.hasVideo}}" hint-placeholder-val="{{ false }}"><video class="art" src="{{c.videoUrl}}" poster="{{c.img}}" aria-hidden="true" tabIndex="-1" muted loop playsinline preload="none"></video></sc-if>
+<sc-if value="{{c.noVideo}}" hint-placeholder-val="{{ true }}"><img class="art" src="{{c.img}}" alt="{{c.alt}}" loading="lazy" decoding="async"></sc-if>
 <sc-if value="{{c.isPhoto}}" hint-placeholder-val="{{ false }}">
 <span class="frame"></span>
 <span class="idx tl"><b>B</b><img src="{{c.pip}}" alt=""></span>
@@ -547,9 +544,6 @@ Draw a card
 <span class="idx br"><b>D</b><img src="{{c.pip}}" alt=""></span>
 <sc-if value="{{c.isPlain}}" hint-placeholder-val="{{ true }}"><img class="wm" src="{{c.pip}}" alt=""></sc-if>
 <span class="txt"><span class="lab">{{c.cat}}</span><span class="nm">{{c.name}}</span></span>
-</sc-if>
-<sc-if value="{{c.hasVideo}}" hint-placeholder-val="{{ false }}">
-<span class="vid"><svg width="9" height="10" viewBox="0 0 9 10" aria-hidden="true"><path d="M1 1l7 4-7 4z" fill="currentColor"></path></svg>Video</span>
 </sc-if>
 <span class="deckback" aria-hidden="true" style="{{c.deckStyle}}"></span>
 </button>
@@ -574,7 +568,6 @@ Draw a card
 <div class="acts">
 <sc-if value="{{c.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{c.storyUrl}}" tabIndex="{{c.backTab}}">Read the story</a></sc-if>
 <sc-if value="{{c.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{c.reviewUrl}}" tabIndex="{{c.backTab}}">{{c.reviewLabel}}</a></sc-if>
-<sc-if value="{{c.hasVideo}}" hint-placeholder-val="{{ false }}"><button type="button" class="act story" onClick="{{c.watch}}" tabIndex="{{c.backTab}}">Watch</button></sc-if>
 <sc-if value="{{c.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act hide-sm" href="{{c.mapUrl}}" tabIndex="{{c.backTab}}">Directions</a></sc-if>
 <sc-if value="{{c.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act hide-sm" href="{{c.link}}" tabIndex="{{c.backTab}}">{{c.linkLabel}}</a></sc-if>
 </div>
@@ -639,7 +632,6 @@ Draw a card
 <div class="acts">
 <sc-if value="{{r.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{r.storyUrl}}">Read the story</a></sc-if>
 <sc-if value="{{r.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{r.reviewUrl}}">{{r.reviewLabel}}</a></sc-if>
-<sc-if value="{{r.hasVideo}}" hint-placeholder-val="{{ false }}"><button type="button" class="act story" onClick="{{r.watch}}">Watch</button></sc-if>
 <sc-if value="{{r.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act" href="{{r.mapUrl}}">Directions</a></sc-if>
 <sc-if value="{{r.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" href="{{r.link}}">{{r.linkLabel}}</a></sc-if>
 <button type="button" class="act" onClick="{{r.share}}">Share</button>
@@ -723,15 +715,11 @@ Draw a card
 </button>
 <button type="button" class="x lnk" onClick="{{d.share}}" aria-label="Copy a link to this card" title="Copy link"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.5 1.5"></path><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.5-1.5"></path></svg></button>
 <div>
-<sc-if value="{{d.showVideo}}" hint-placeholder-val="{{ false }}">
-<div class="video">
-<video src="{{d.videoUrl}}" poster="{{d.poster}}" aria-label="{{d.videoLabel}}" controls loop muted playsinline preload="auto"></video>
-</div>
-</sc-if>
 <sc-if value="{{d.showCard}}" hint-placeholder-val="{{ true }}">
 <div class="{{d.bigCls}}">
 <sc-if value="{{d.isArt}}" hint-placeholder-val="{{ false }}">
-<img class="art" src="{{d.img}}" alt="{{d.alt}}">
+<sc-if value="{{d.hasVideo}}" hint-placeholder-val="{{ false }}"><video class="art" src="{{d.videoUrl}}" poster="{{d.img}}" aria-hidden="true" tabIndex="-1" muted loop playsinline preload="none"></video></sc-if>
+<sc-if value="{{d.noVideo}}" hint-placeholder-val="{{ true }}"><img class="art" src="{{d.img}}" alt="{{d.alt}}"></sc-if>
 <sc-if value="{{d.isPhoto}}" hint-placeholder-val="{{ false }}">
 <span class="frame"></span>
 <span class="idx tl"><b>B</b><img src="{{d.pip}}" alt=""></span>
@@ -763,7 +751,6 @@ Draw a card
 <div class="acts">
 <sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{d.storyUrl}}">{{d.storyLabel}}</a></sc-if>
 <sc-if value="{{d.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{d.reviewUrl}}">{{d.reviewLabel}}</a></sc-if>
-<sc-if value="{{d.canWatch}}" hint-placeholder-val="{{ false }}"><button type="button" class="act story" onClick="{{d.watch}}">Watch the video</button></sc-if>
 <sc-if value="{{d.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" href="{{d.link}}">{{d.linkLabel}}</a></sc-if>
 </div>
 <div class="det-ctas">
@@ -1023,13 +1010,26 @@ function updateTabs(self) {
     }
   } catch (e) {}
 }
+var _vio = null;
 function startVideos() {
+  // Card videos play only while on screen (and not at all under reduced motion; the still poster stays).
   try {
+    var vids = document.querySelectorAll('video.art');
+    if (!vids.length) return;
     var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    document.querySelectorAll('.video video').forEach(function (v) {
-      if (v._started) return;
-      v._started = true; v.muted = true; v.loop = true; v.playsInline = true;
-      if (!rm) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
+    if (!_vio && window.IntersectionObserver && !rm) {
+      _vio = new IntersectionObserver(function (es) {
+        es.forEach(function (en) {
+          var v = en.target;
+          if (en.isIntersecting) { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } else { v.pause(); }
+        });
+      }, { rootMargin: '120px', threshold: 0.2 });
+    }
+    vids.forEach(function (v) {
+      if (v._wired) return;
+      v._wired = true; v.muted = true; v.loop = true; v.playsInline = true;
+      if (rm) return;
+      if (_vio) _vio.observe(v); else { var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); }
     });
   } catch (e) {}
 }
@@ -1343,7 +1343,7 @@ class Component extends DCLogic {
       cat: it.c, name: it.dn, blurb: it.b, addr: it.a, hasAddr: !!it.a,
       link: it.l, hasLink: !!it.l, linkLabel: (it.u && it.u.charAt(0) === '@') ? 'Instagram' : 'Website',
       hasStory: !!it.sl, storyUrl: it.sl || '',
-      mapUrl: mapUrl(it), hasVideo: typeof it.v === 'string' && !!it.v, videoUrl: typeof it.v === 'string' ? it.v : '', poster: typeof it.v === 'string' ? it.v.replace(/\.mp4$/, '.jpg') : '', videoLabel: 'Video: ' + (it.dn || it.n),
+      mapUrl: mapUrl(it), hasVideo: typeof it.v === 'string' && !!it.v, noVideo: !(typeof it.v === 'string' && !!it.v), videoUrl: typeof it.v === 'string' ? it.v : '',
       frontTab: flipped ? -1 : 0, backTab: flipped ? 0 : -1, backHidden: flipped ? 'false' : 'true',
       ariaFront: SUIT_BY[it.s].suit + ', ' + it.c + ': ' + it.dn + '. Flip for details.',
       delay: ((i % 24) * 40) + 'ms',
@@ -1353,7 +1353,6 @@ class Component extends DCLogic {
       flip: function () { self.toggle(it.id); },
       open: function () { self.openDetail(it.id, false); },
       openLink: function (e) { if (e && e.preventDefault) e.preventDefault(); self.openDetail(it.id, false); },
-      watch: function () { self.openDetail(it.id, true); }
     };
   }
 
@@ -1400,8 +1399,7 @@ class Component extends DCLogic {
       d = Object.assign(cv, {
         bigCls: 'big ' + (art ? 'is-art' : det.img ? 'is-photo' : 'is-plain') + ((det.s === 'H' || det.s === 'D') ? ' is-red' : ' is-ink') + (st.dealFlip ? ' deal-a' : ' deal-b'),
         hasImg: !!det.img,
-        showVideo: !!(st.detail.video && cv.hasVideo), showCard: !(st.detail.video && cv.hasVideo),
-        canWatch: cv.hasVideo && !st.detail.video,
+        showCard: true,
         story: det.st || '',
         storyLabel: det.st ? 'Read: ' + det.st : 'Read the story',
         locs: pl.locs, hasLocs: pl.locs.length > 0, note: pl.note, hasNote: !!pl.note
