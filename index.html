@@ -808,13 +808,18 @@ Draw a card
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"showTickets":{"editor":"boolean","default":true,"section":"Launch"},"showPromo":{"editor":"boolean","default":true,"section":"Launch"},"table":{"editor":"enum","options":["navy","green","oxblood"],"default":"navy","section":"Look"},"$preview":{"width":1440,"height":6200}}'>
 /* Where the app is served from. Standalone this is the page's own origin; when the page is injected into another site (WordPress),
-   the host rewrites <script src="./support.js"> to the app origin, so we derive the base from that tag.
+   the host rewrites <script src="./support.js"> to the app origin, so we derive the base from that tag (or, if the host inlines
+   support.js instead, from an /assets/ URL it rewrote inside the template).
    Override with window.BOBD_BASE = 'https://bobd2026.dmagazine.com' before this script runs. */
 var APP_BASE = (function () {
   try {
     if (window.BOBD_BASE) return String(window.BOBD_BASE).replace(/\/+$/, '');
     var el = document.querySelector('script[src*="support.js"]');
     if (el && el.src) return el.src.replace(/\/support\.js(\?.*)?$/, '');
+    // support.js was inlined by the host (no src to read): use an asset URL the host already pointed at the app origin
+    var a = document.querySelector('x-dc [src*="/assets/"], #dc-root [src*="/assets/"]');
+    var m = a && (a.src || '').match(/^(https?:\/\/[^/]+(?:\/[^?#]*?)?)\/assets\//);
+    if (m) return m[1];
   } catch (e) {}
   return '';
 })();
