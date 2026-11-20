@@ -37,6 +37,8 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 - Popup headline and list-view titles still use Blackest.
 - All Tungsten Comp, Tungsten Cond, Futura Std and XComp files are presumed **trial fonts and need licensed web versions before launch.** (Licence status of the Cond Medium file is unconfirmed.)
 
+**Videos:** animated versions of the cards (1080x1350, 3-4 s, silent, H.264) live in `assets/video/<slug>.mp4` with a `<slug>.jpg` poster. A winner has a video when `v` in `data/winners.json` is the mp4 path (`v: 1` is no longer valid). The card shows a VIDEO badge and a Watch button; the detail modal plays it muted, looping, with controls (autoplay skipped under reduced motion). Current clips (Nov 20): Zachary J. Willis, DJ Alaska, Twelve Thirty Four, Stay Fit Studio ("Brittney" clip, matched by suit and the "Stay Fit Britt" blurb), Shasa Mitcham at The Conservatory. Videos are excluded from the immutable `/assets` cache rule in `vercel.json` so a re-cut with the same filename is picked up (the rule is a path-to-regexp negative lookahead; not yet confirmed on Vercel).
+
 **Title case:** `it.n` stays ALL CAPS in the data because `REVIEWS[it.n]`, `STORIES[it.n]` and search key on it. The display name is `it.dn` (also `it.nt`), built in `prep()` by `NAME_FIX[it.n] || niceName(it.n)`. Edit the `KEEP` (acronyms), `SMALL` (small words) and `NAME_FIX` (exceptions) tables when a name looks wrong. Unconfirmed: "Harky.Diml", and whether DAQ, CNTRD, CLO9UD and OK2BX should stay as styled.
 
 **Wild Cards:** inserted into the card list at positions 7 and 17 when browsing (not while searching). The first is the newsletter signup joker; the second promotes the December issue cover.
@@ -57,7 +59,7 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 3. **Vercel Hobby plan** is for non-commercial use. A promo page with ads is commercial, so move to a paid plan or another host before launch.
 4. **Licensed web fonts** for Tungsten Comp, Tungsten Cond, Futura Std and Tungsten XComp; add the XComp file.
 5. **Go-live SEO:** remove the `noindex` header in `vercel.json`, add the SEO snippet (`#bobd-seo`), exactly one `h1`, proofread data. The old SEO snippet and data JSON were generated before the review links and 115 photos were added and are stale; regenerate if needed.
-6. **Content gaps:** the event calendar entry is all-day (add a start time), the consent line under the signup was asked about and never answered, the editor intro is a draft ("DRAFT INTRO – EDITORS TO REVISE" tag), the video embeds are placeholders.
+6. **Content gaps:** the event calendar entry is all-day (add a start time), the consent line under the signup was asked about and never answered, the editor intro is a draft ("DRAFT INTRO – EDITORS TO REVISE" tag), only 5 winners have a video so far (see Videos); more clips are coming.
 7. **Check the 115-photo density on a phone** (it looked fine on desktop), and the crop of wide archive photos on tall cards.
 
 ## Gotchas and how to test
