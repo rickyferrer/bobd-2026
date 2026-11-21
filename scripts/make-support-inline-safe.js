@@ -16,6 +16,15 @@
  * Fix: write the "<" as \x3C. Inside a string, regex or (untagged) template literal, \x3C means exactly "<",
  * so behaviour is unchanged. Elsewhere (code position) \x3C is a syntax error, which the compile check below catches.
  *
+ * Second job: the logic bridge. Hosts that inline the runtime can also drop the page's own
+ * <script type="text/x-dc" data-dc-script> (the app logic: it is not JavaScript, so a host may treat it as removable).
+ * Without it the runtime renders the template with nothing behind it ("{{ headCount }} never resolved"). The bridge is a
+ * small ES5 block prepended to support.js (between bobd:logic-bridge markers, replaced in place on re-runs). If the
+ * logic tag is missing or empty when the DOM is ready, it fetches the app's own index.html from the app origin
+ * (synchronously, so it finishes before the runtime reads the tag) and restores the tag. A no-op whenever the tag is
+ * present, so the standalone page is unaffected. It runs first because it is registered before the runtime's own
+ * DOMContentLoaded handler. Needs CORS on "/" (vercel.json).
+ *
  * Usage (re-run whenever support.js is re-exported from Claude Design):
  *   node scripts/make-support-inline-safe.js             rewrite support.js in place (idempotent)
  *   node scripts/make-support-inline-safe.js --check     change nothing; exit 1 if the file is not inline-safe
@@ -33,7 +42,44 @@ const args = process.argv.slice(2);
 const check = args.includes('--check');
 const file = path.resolve(args.find((a) => !a.startsWith('--')) || path.join(__dirname, '..', 'support.js'));
 
-const src = fs.readFileSync(file, 'utf8');
+const BRIDGE_START = '/* bobd:logic-bridge:start */';
+const BRIDGE_END = '/* bobd:logic-bridge:end */';
+const BRIDGE = BRIDGE_START + `
+/* If the host dropped the data-dc-script tag (the page logic), restore it from the app origin before the runtime boots. */
+(function () {
+  function restore() {
+    try {
+      var tag = document.querySelector('script[data-dc-script]');
+      if (tag && tag.textContent.replace(/\\s/g, '')) return;            // present: nothing to do
+      if (!document.querySelector('x-dc')) return;
+      var base = '', a = document.querySelector('x-dc [src*="/assets/"]'), m;
+      if (window.BOBD_BASE) base = String(window.BOBD_BASE).replace(/\\/+$/, '');
+      else if ((a = a && a.src) && (m = a.match(/^(https?:\\/\\/[^/]+(?:\\/[^?#]*?)?)\\/assets\\//))) base = m[1];
+      if (!base || base === location.origin) return;                       // same origin: the tag would have been in the page
+      var x = new XMLHttpRequest();
+      x.open('GET', base + '/', false);                                    // synchronous on purpose: must finish before the runtime reads the tag
+      x.send(null);
+      if (x.status !== 200) return;
+      var src = new DOMParser().parseFromString(x.responseText, 'text/html').querySelector('script[data-dc-script]');
+      if (!src) return;
+      var t = tag || document.createElement('script');
+      t.type = 'text/x-dc'; t.setAttribute('data-dc-script', '');
+      if (src.getAttribute('data-props') != null) t.setAttribute('data-props', src.getAttribute('data-props'));
+      t.textContent = src.textContent;
+      if (!tag) (document.body || document.documentElement).appendChild(t);
+    } catch (e) { if (window.console) console.warn('[bobd] could not restore the page logic', e); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', restore); else restore();
+})();
+` + BRIDGE_END + '\n';
+
+let src = fs.readFileSync(file, 'utf8');
+let bridged = false;
+{
+  const i = src.indexOf(BRIDGE_START), j = src.indexOf(BRIDGE_END);
+  const next = (i >= 0 && j > i) ? src.slice(0, i) + BRIDGE + src.slice(j + BRIDGE_END.length).replace(/^\n/, '') : BRIDGE + src;
+  if (next !== src) { bridged = true; src = next; }
+}
 
 let comments = 0;
 let scripts = 0;
@@ -51,13 +97,13 @@ if (left) { console.error('still contains "' + left[0] + '" after rewriting: ' +
 try { new vm.Script(out, { filename: path.basename(file) }); }
 catch (e) { console.error('rewritten file does not compile (a match was outside a string/regex?): ' + e.message); process.exit(2); }
 
-const n = comments + scripts + xdcs;
+const n = comments + scripts + xdcs + (bridged ? 1 : 0);
 if (check) {
-  if (n) { console.error(path.relative(process.cwd(), file) + ' is NOT inline-safe: ' + comments + ' "<!--", ' + scripts + ' "<script"/"</script" and ' + xdcs + ' "<x-dc"/"</x-dc" would be escaped. Run: node scripts/make-support-inline-safe.js'); process.exit(1); }
+  if (n) { console.error(path.relative(process.cwd(), file) + ' is NOT inline-safe: ' + comments + ' "<!--", ' + scripts + ' "<script"/"</script", ' + xdcs + ' "<x-dc"/"</x-dc" to escape' + (bridged ? ' and the logic bridge to add/update' : '') + '. Run: node scripts/make-support-inline-safe.js'); process.exit(1); }
   console.log(path.relative(process.cwd(), file) + ' is inline-safe.');
 } else if (n) {
   fs.writeFileSync(file, out);
-  console.log('rewrote ' + path.relative(process.cwd(), file) + ': ' + comments + ' "<!--", ' + scripts + ' "<script"/"</script" and ' + xdcs + ' "<x-dc"/"</x-dc" now use \\x3C.');
+  console.log('rewrote ' + path.relative(process.cwd(), file) + ': ' + comments + ' "<!--", ' + scripts + ' "<script"/"</script" and ' + xdcs + ' "<x-dc"/"</x-dc" now use \\x3C' + (bridged ? '; logic bridge added/updated' : '') + '.');
 } else {
   console.log(path.relative(process.cwd(), file) + ' already inline-safe; nothing to do.');
 }

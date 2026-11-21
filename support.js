@@ -1,3 +1,31 @@
+/* bobd:logic-bridge:start */
+/* If the host dropped the data-dc-script tag (the page logic), restore it from the app origin before the runtime boots. */
+(function () {
+  function restore() {
+    try {
+      var tag = document.querySelector('script[data-dc-script]');
+      if (tag && tag.textContent.replace(/\s/g, '')) return;            // present: nothing to do
+      if (!document.querySelector('x-dc')) return;
+      var base = '', a = document.querySelector('x-dc [src*="/assets/"]'), m;
+      if (window.BOBD_BASE) base = String(window.BOBD_BASE).replace(/\/+$/, '');
+      else if ((a = a && a.src) && (m = a.match(/^(https?:\/\/[^/]+(?:\/[^?#]*?)?)\/assets\//))) base = m[1];
+      if (!base || base === location.origin) return;                       // same origin: the tag would have been in the page
+      var x = new XMLHttpRequest();
+      x.open('GET', base + '/', false);                                    // synchronous on purpose: must finish before the runtime reads the tag
+      x.send(null);
+      if (x.status !== 200) return;
+      var src = new DOMParser().parseFromString(x.responseText, 'text/html').querySelector('script[data-dc-script]');
+      if (!src) return;
+      var t = tag || document.createElement('script');
+      t.type = 'text/x-dc'; t.setAttribute('data-dc-script', '');
+      if (src.getAttribute('data-props') != null) t.setAttribute('data-props', src.getAttribute('data-props'));
+      t.textContent = src.textContent;
+      if (!tag) (document.body || document.documentElement).appendChild(t);
+    } catch (e) { if (window.console) console.warn('[bobd] could not restore the page logic', e); }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', restore); else restore();
+})();
+/* bobd:logic-bridge:end */
 /**
  * @license React
  * react.production.min.js
