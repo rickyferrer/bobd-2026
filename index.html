@@ -89,7 +89,7 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .deck-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:22px}
 .deck-head h2{margin:0;font:700 clamp(44px,5vw,72px)/.9 'Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.02em;text-transform:uppercase;color:#C9AD6B}
 .deck-head p{margin:0;color:#E9DFC9;font-size:16px}
-.controls{position:sticky;top:0;z-index:20;display:flex;flex-direction:column;gap:8px;padding:8px 10px;border:1px solid rgba(201,173,107,.35);border-radius:4px;background:rgba(10,12,22,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.controls{position:sticky;top:var(--bd-top,0px);z-index:20;display:flex;flex-direction:column;gap:8px;padding:8px 10px;border:1px solid rgba(201,173,107,.35);border-radius:4px;background:rgba(10,12,22,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px}
 @media (min-width:601px){.tabs .tab{flex:1 1 auto;justify-content:center}}
 .tab{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 14px;border:1px solid rgba(201,173,107,.5);border-radius:2px;background:transparent;color:#F1E9D8;font:600 14px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.06em;cursor:pointer;transition:background-color .2s,color .2s}
@@ -211,7 +211,7 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .x{flex:none;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;margin:-8px -8px 0 0;border:0;border-radius:999px;background:transparent;color:#5A5550;cursor:pointer}
 .x:hover{background:#EFE6D3;color:#17171A}
 .back .nm{font-size:21px;margin:0}
-.card,.row{scroll-margin-top:150px}
+.card,.row{scroll-margin-top:calc(150px + var(--bd-top,0px))}
 .btxt{display:flex;flex-direction:column;gap:2px;flex:1 1 0;min-height:0}
 .blurb{margin:0;font-size:15px;line-height:1.5;color:#2E2A25;flex:1 1 0;min-height:0;overflow:hidden;-webkit-mask-image:linear-gradient(#000 calc(100% - 30px),transparent);mask-image:linear-gradient(#000 calc(100% - 30px),transparent)}
 .btxt.is-fit .blurb{-webkit-mask-image:none;mask-image:none}
@@ -1111,6 +1111,40 @@ function watchUrls() {
     window._bdUrlObs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-bd-s', 'data-bd-l', 'data-bd-p'] });
   } catch (e) {}
 }
+/* Embedded in a host page, the host's own sticky/fixed header (dmagazine.com's nav, the WordPress admin bar) covers the top of the screen,
+   so the deck's sticky filter bar must stick just below it. Ask the browser what is on top at the screen's top edge (cheap: a few
+   elementsFromPoint calls), walk up to the fixed/sticky container, and stack bars. Publishes the result as --bd-top on #dc-root.
+   Standalone nothing is found, so it stays 0. A header that hides on scroll drops back to 0 by itself. */
+function watchStickyOffset() {
+  try {
+    var root = document.getElementById('dc-root');
+    if (!root || window._bdSticky || !document.elementsFromPoint) return;
+    window._bdSticky = true;
+    var measure = function () {
+      var off = 0, x = Math.round(window.innerWidth / 2);
+      for (var n = 0; n < 4; n++) {
+        var stack = document.elementsFromPoint(x, Math.min(window.innerHeight - 1, off + 2)), hit = null;
+        for (var i = 0; i < stack.length && !hit; i++) {
+          var el = stack[i];
+          if (root.contains(el) || el === document.documentElement || el === document.body) continue;
+          for (var a = el; a && a !== document.documentElement; a = a.parentElement) {
+            var pos = getComputedStyle(a).position;
+            if (pos === 'fixed' || pos === 'sticky') { hit = a; break; }
+          }
+        }
+        if (!hit) break;
+        var b = Math.ceil(hit.getBoundingClientRect().bottom);
+        if (b <= off) break;
+        off = b;
+      }
+      if (root._bdTop !== off) { root._bdTop = off; root.style.setProperty('--bd-top', off + 'px'); }
+    };
+    var queued = false, kick = function () { if (queued) return; queued = true; requestAnimationFrame(function () { queued = false; measure(); }); };
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', kick);
+    measure(); setTimeout(measure, 600); setTimeout(measure, 2000);
+  } catch (e) {}
+}
 function pageBase() { try { return location.href.split('#')[0]; } catch (e) { return ''; } }
 function injectLd(items) {
   try {
@@ -1173,6 +1207,7 @@ class Component extends DCLogic {
   componentDidMount() {
     var self = this;
     watchUrls();
+    watchStickyOffset();
     this.armPromo();
     fetch(DATA_URL).then(function (r) { return r.json(); }).then(function (items) {
       prep(items);
