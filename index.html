@@ -402,7 +402,7 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 </div>
 <div class="fan">
 <sc-for list="{{fan}}" as="f" hint-placeholder-count="4">
-<a class="{{f.cls}}" href="#deck" onClick="{{f.pick}}" aria-label="{{f.aria}}"><img class="fan-img" src="{{f.img}}" alt=""><span class="fan-lab"><img src="{{f.pip}}" alt=""><span class="fan-txt">{{f.label}}</span></span></a>
+<a class="{{f.cls}}" href="#deck" onClick="{{f.pick}}" aria-label="{{f.aria}}"><img class="fan-img" data-bd-s="{{f.img}}" alt=""><span class="fan-lab"><img data-bd-s="{{f.pip}}" alt=""><span class="fan-txt">{{f.label}}</span></span></a>
 </sc-for>
 <p class="fan-hint">Pick a card, any card.&nbsp;</p>
 </div>
@@ -485,7 +485,7 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 <div class="tabs" role="group" aria-label="Filter by suit">
 <sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
 <button type="button" class="{{t.cls}}" aria-pressed="{{t.pressed}}" onClick="{{t.pick}}">
-<sc-if value="{{t.hasPip}}" hint-placeholder-val="{{ true }}"><img src="{{t.pip}}" alt=""></sc-if>
+<sc-if value="{{t.hasPip}}" hint-placeholder-val="{{ true }}"><img data-bd-s="{{t.pip}}" alt=""></sc-if>
 <span>{{t.label}}</span>
 <span class="ct">{{t.count}}</span>
 </button>
@@ -537,20 +537,20 @@ Draw a card
 <div class="inner">
 <button type="button" class="{{c.frontCls}}" onClick="{{c.flip}}" tabIndex="{{c.frontTab}}" aria-label="{{c.ariaFront}}">
 <sc-if value="{{c.isArt}}" hint-placeholder-val="{{ false }}">
-<sc-if value="{{c.hasVideo}}" hint-placeholder-val="{{ false }}"><video class="art" src="{{c.videoUrl}}" poster="{{c.img}}" aria-hidden="true" tabIndex="-1" muted loop playsinline preload="none"></video></sc-if>
-<sc-if value="{{c.noVideo}}" hint-placeholder-val="{{ true }}"><img class="art" src="{{c.img}}" alt="{{c.alt}}" loading="lazy" decoding="async"></sc-if>
+<sc-if value="{{c.hasVideo}}" hint-placeholder-val="{{ false }}"><video class="art" data-bd-s="{{c.videoUrl}}" data-bd-p="{{c.img}}" aria-hidden="true" tabIndex="-1" muted loop playsinline preload="none"></video></sc-if>
+<sc-if value="{{c.noVideo}}" hint-placeholder-val="{{ true }}"><img class="art" data-bd-s="{{c.img}}" alt="{{c.alt}}" loading="lazy" decoding="async"></sc-if>
 <sc-if value="{{c.isPhoto}}" hint-placeholder-val="{{ false }}">
 <span class="frame"></span>
-<span class="idx tl"><b>B</b><img src="{{c.pip}}" alt=""></span>
-<span class="idx br"><b>D</b><img src="{{c.pip}}" alt=""></span>
+<span class="idx tl"><b>B</b><img data-bd-s="{{c.pip}}" alt=""></span>
+<span class="idx br"><b>D</b><img data-bd-s="{{c.pip}}" alt=""></span>
 </sc-if>
 <span class="plate"><span class="lab">{{c.cat}}</span><span class="nm">{{c.name}}</span></span>
 </sc-if>
 <sc-if value="{{c.notArt}}" hint-placeholder-val="{{ true }}">
 <span class="frame"></span>
-<span class="idx tl"><b>B</b><img src="{{c.pip}}" alt=""></span>
-<span class="idx br"><b>D</b><img src="{{c.pip}}" alt=""></span>
-<sc-if value="{{c.isPlain}}" hint-placeholder-val="{{ true }}"><img class="wm" src="{{c.pip}}" alt=""></sc-if>
+<span class="idx tl"><b>B</b><img data-bd-s="{{c.pip}}" alt=""></span>
+<span class="idx br"><b>D</b><img data-bd-s="{{c.pip}}" alt=""></span>
+<sc-if value="{{c.isPlain}}" hint-placeholder-val="{{ true }}"><img class="wm" data-bd-s="{{c.pip}}" alt=""></sc-if>
 <span class="txt"><span class="lab">{{c.cat}}</span><span class="nm">{{c.name}}</span></span>
 </sc-if>
 <span class="deckback" aria-hidden="true" style="{{c.deckStyle}}"></span>
@@ -574,10 +574,10 @@ Draw a card
 </div>
 <sc-if value="{{c.hasAddr}}" hint-placeholder-val="{{ true }}"><p class="addr">{{c.addr}}</p></sc-if>
 <div class="acts">
-<sc-if value="{{c.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{c.storyUrl}}" tabIndex="{{c.backTab}}">Read the story</a></sc-if>
-<sc-if value="{{c.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{c.reviewUrl}}" tabIndex="{{c.backTab}}">{{c.reviewLabel}}</a></sc-if>
-<sc-if value="{{c.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act hide-sm" href="{{c.mapUrl}}" tabIndex="{{c.backTab}}">Directions</a></sc-if>
-<sc-if value="{{c.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act hide-sm" href="{{c.link}}" tabIndex="{{c.backTab}}">{{c.linkLabel}}</a></sc-if>
+<sc-if value="{{c.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{c.storyUrl}}" tabIndex="{{c.backTab}}">Read the story</a></sc-if>
+<sc-if value="{{c.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" data-bd-l="{{c.reviewUrl}}" tabIndex="{{c.backTab}}">{{c.reviewLabel}}</a></sc-if>
+<sc-if value="{{c.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act hide-sm" data-bd-l="{{c.mapUrl}}" tabIndex="{{c.backTab}}">Directions</a></sc-if>
+<sc-if value="{{c.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act hide-sm" data-bd-l="{{c.link}}" tabIndex="{{c.backTab}}">{{c.linkLabel}}</a></sc-if>
 </div>
 </div>
 </div>
@@ -631,17 +631,17 @@ Draw a card
 <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
 <sc-if value="{{r.isWinner}}" hint-placeholder-val="{{ true }}">
 <article class="row" id="{{r.anchor}}">
-<div class="row-cat"><img src="{{r.gpip}}" alt=""><span class="lab">{{r.cat}}</span></div>
+<div class="row-cat"><img data-bd-s="{{r.gpip}}" alt=""><span class="lab">{{r.cat}}</span></div>
 <div class="row-main">
-<h3><a href="{{r.href}}" onClick="{{r.openLink}}">{{r.name}}</a></h3>
+<h3><a data-bd-l="{{r.href}}" onClick="{{r.openLink}}">{{r.name}}</a></h3>
 <p>{{r.blurb}}</p>
 <sc-if value="{{r.hasAddr}}" hint-placeholder-val="{{ true }}"><p class="addr">{{r.addr}}</p></sc-if>
 </div>
 <div class="acts">
-<sc-if value="{{r.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{r.storyUrl}}">Read the story</a></sc-if>
-<sc-if value="{{r.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{r.reviewUrl}}">{{r.reviewLabel}}</a></sc-if>
-<sc-if value="{{r.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act" href="{{r.mapUrl}}">Directions</a></sc-if>
-<sc-if value="{{r.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" href="{{r.link}}">{{r.linkLabel}}</a></sc-if>
+<sc-if value="{{r.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{r.storyUrl}}">Read the story</a></sc-if>
+<sc-if value="{{r.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" data-bd-l="{{r.reviewUrl}}">{{r.reviewLabel}}</a></sc-if>
+<sc-if value="{{r.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act" data-bd-l="{{r.mapUrl}}">Directions</a></sc-if>
+<sc-if value="{{r.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" data-bd-l="{{r.link}}">{{r.linkLabel}}</a></sc-if>
 <button type="button" class="act" onClick="{{r.share}}">Share</button>
 </div>
 </article>
@@ -726,19 +726,19 @@ Draw a card
 <sc-if value="{{d.showCard}}" hint-placeholder-val="{{ true }}">
 <div class="{{d.bigCls}}">
 <sc-if value="{{d.isArt}}" hint-placeholder-val="{{ false }}">
-<sc-if value="{{d.hasVideo}}" hint-placeholder-val="{{ false }}"><video class="art" src="{{d.videoUrl}}" poster="{{d.img}}" aria-hidden="true" tabIndex="-1" muted loop playsinline preload="none"></video></sc-if>
-<sc-if value="{{d.noVideo}}" hint-placeholder-val="{{ true }}"><img class="art" src="{{d.img}}" alt="{{d.alt}}"></sc-if>
+<sc-if value="{{d.hasVideo}}" hint-placeholder-val="{{ false }}"><video class="art" data-bd-s="{{d.videoUrl}}" data-bd-p="{{d.img}}" aria-hidden="true" tabIndex="-1" muted loop playsinline preload="none"></video></sc-if>
+<sc-if value="{{d.noVideo}}" hint-placeholder-val="{{ true }}"><img class="art" data-bd-s="{{d.img}}" alt="{{d.alt}}"></sc-if>
 <sc-if value="{{d.isPhoto}}" hint-placeholder-val="{{ false }}">
 <span class="frame"></span>
-<span class="idx tl"><b>B</b><img src="{{d.pip}}" alt=""></span>
-<span class="idx br"><b>D</b><img src="{{d.pip}}" alt=""></span>
+<span class="idx tl"><b>B</b><img data-bd-s="{{d.pip}}" alt=""></span>
+<span class="idx br"><b>D</b><img data-bd-s="{{d.pip}}" alt=""></span>
 </sc-if>
 </sc-if>
 <sc-if value="{{d.notArt}}" hint-placeholder-val="{{ true }}">
 <span class="frame"></span>
-<span class="idx tl"><b>B</b><img src="{{d.pip}}" alt=""></span>
-<span class="idx br"><b>D</b><img src="{{d.pip}}" alt=""></span>
-<sc-if value="{{d.isPlain}}" hint-placeholder-val="{{ true }}"><img class="wm" src="{{d.pip}}" alt=""></sc-if>
+<span class="idx tl"><b>B</b><img data-bd-s="{{d.pip}}" alt=""></span>
+<span class="idx br"><b>D</b><img data-bd-s="{{d.pip}}" alt=""></span>
+<sc-if value="{{d.isPlain}}" hint-placeholder-val="{{ true }}"><img class="wm" data-bd-s="{{d.pip}}" alt=""></sc-if>
 <span class="txt"><span class="lab">{{d.cat}}</span><span class="nm">{{d.name}}</span></span>
 </sc-if>
 </div>
@@ -751,15 +751,15 @@ Draw a card
 <sc-if value="{{d.hasLocs}}" hint-placeholder-val="{{ true }}">
 <div class="locs">
 <sc-for list="{{d.locs}}" as="l" hint-placeholder-count="1">
-<p class="addr"><sc-if value="{{l.hasAddr}}" hint-placeholder-val="{{ true }}"><a href="{{l.map}}" target="_blank" rel="noopener">{{l.addr}}</a></sc-if><sc-if value="{{l.sep}}" hint-placeholder-val="{{ true }}"><span class="sep" aria-hidden="true">·</span></sc-if><sc-if value="{{l.hasPhone}}" hint-placeholder-val="{{ true }}"><a href="{{l.tel}}">{{l.phone}}</a></sc-if></p>
+<p class="addr"><sc-if value="{{l.hasAddr}}" hint-placeholder-val="{{ true }}"><a data-bd-l="{{l.map}}" target="_blank" rel="noopener">{{l.addr}}</a></sc-if><sc-if value="{{l.sep}}" hint-placeholder-val="{{ true }}"><span class="sep" aria-hidden="true">·</span></sc-if><sc-if value="{{l.hasPhone}}" hint-placeholder-val="{{ true }}"><a data-bd-l="{{l.tel}}">{{l.phone}}</a></sc-if></p>
 </sc-for>
 <sc-if value="{{d.hasNote}}" hint-placeholder-val="{{ false }}"><p class="addr note">{{d.note}}</p></sc-if>
 </div>
 </sc-if>
 <div class="acts">
-<sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" href="{{d.storyUrl}}">{{d.storyLabel}}</a></sc-if>
-<sc-if value="{{d.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" href="{{d.reviewUrl}}">{{d.reviewLabel}}</a></sc-if>
-<sc-if value="{{d.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" href="{{d.link}}">{{d.linkLabel}}</a></sc-if>
+<sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{d.storyUrl}}">{{d.storyLabel}}</a></sc-if>
+<sc-if value="{{d.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" data-bd-l="{{d.reviewUrl}}">{{d.reviewLabel}}</a></sc-if>
+<sc-if value="{{d.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" data-bd-l="{{d.link}}">{{d.linkLabel}}</a></sc-if>
 </div>
 <div class="det-ctas">
 <button type="button" class="mini solid" onClick="{{draw}}">Draw another card</button>
@@ -787,7 +787,7 @@ Draw a card
 </div>
 <sc-if value="{{promoCal}}" hint-placeholder-val="{{ false }}">
 <div id="promo-cal" class="tk-calopts">
-<a class="tk-opt" href="{{calGoogle}}" target="_blank" rel="noopener" onClick="{{calTrack}}">Google Calendar</a>
+<a class="tk-opt" data-bd-l="{{calGoogle}}" target="_blank" rel="noopener" onClick="{{calTrack}}">Google Calendar</a>
 <button type="button" class="tk-opt" onClick="{{calIcs}}">Apple / Outlook (.ics)</button>
 </div>
 </sc-if>
@@ -1069,6 +1069,40 @@ function startVideos() {
     });
   } catch (e) {}
 }
+/* URL attributes that hold a {{hole}} live in the template as data-bd-s (src) / data-bd-l (href, "link") / data-bd-p (poster).
+   The short names are deliberate: no src= / href= / poster= pattern, however naive, can match them. A host that rewrites
+   "relative" URLs (the WordPress block prefixes every src/href/poster with the asset base) would otherwise turn src="{{c.img}}"
+   into "https://app/{{c.img}}" (or percent-encode the braces), breaking every image and link. Copy them to the real attributes the
+   moment React inserts or changes the elements; MutationObserver callbacks run before the next paint. */
+var _URL_ATTRS = { s: 'src', l: 'href', p: 'poster' };
+function hydrateUrls(node) {
+  try {
+    if (!node || node.nodeType !== 1) return;
+    var apply = function (el) {
+      for (var k in _URL_ATTRS) {
+        var v = el.getAttribute('data-bd-' + k);
+        if (v !== null && el.getAttribute(_URL_ATTRS[k]) !== v) el.setAttribute(_URL_ATTRS[k], v);
+      }
+    };
+    if (node.hasAttribute('data-bd-s') || node.hasAttribute('data-bd-l') || node.hasAttribute('data-bd-p')) apply(node);
+    var list = node.querySelectorAll('[data-bd-s],[data-bd-l],[data-bd-p]');
+    for (var j = 0; j < list.length; j++) apply(list[j]);
+  } catch (e) {}
+}
+function watchUrls() {
+  try {
+    if (window._bdUrlObs || !window.MutationObserver) return;
+    hydrateUrls(document.getElementById('dc-root') || document.body);
+    window._bdUrlObs = new MutationObserver(function (recs) {
+      for (var i = 0; i < recs.length; i++) {
+        var r = recs[i];
+        if (r.type === 'attributes') hydrateUrls(r.target);
+        else for (var j = 0; j < r.addedNodes.length; j++) hydrateUrls(r.addedNodes[j]);
+      }
+    });
+    window._bdUrlObs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-bd-s', 'data-bd-l', 'data-bd-p'] });
+  } catch (e) {}
+}
 function pageBase() { try { return location.href.split('#')[0]; } catch (e) { return ''; } }
 function injectLd(items) {
   try {
@@ -1130,6 +1164,7 @@ class Component extends DCLogic {
 
   componentDidMount() {
     var self = this;
+    watchUrls();
     this.armPromo();
     fetch(DATA_URL).then(function (r) { return r.json(); }).then(function (items) {
       prep(items);
