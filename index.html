@@ -574,7 +574,7 @@ Draw a card
 </div>
 <sc-if value="{{c.hasAddr}}" hint-placeholder-val="{{ true }}"><p class="addr">{{c.addr}}</p></sc-if>
 <div class="acts">
-<sc-if value="{{c.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{c.storyUrl}}" tabIndex="{{c.backTab}}">Read the story</a></sc-if>
+<sc-if value="{{c.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{c.storyUrl}}" tabIndex="{{c.backTab}}" target="_blank" rel="noopener">Read the story</a></sc-if>
 <sc-if value="{{c.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" data-bd-l="{{c.reviewUrl}}" tabIndex="{{c.backTab}}">{{c.reviewLabel}}</a></sc-if>
 <sc-if value="{{c.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act hide-sm" data-bd-l="{{c.mapUrl}}" tabIndex="{{c.backTab}}">Directions</a></sc-if>
 <sc-if value="{{c.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act hide-sm" data-bd-l="{{c.link}}" tabIndex="{{c.backTab}}">{{c.linkLabel}}</a></sc-if>
@@ -638,7 +638,7 @@ Draw a card
 <sc-if value="{{r.hasAddr}}" hint-placeholder-val="{{ true }}"><p class="addr">{{r.addr}}</p></sc-if>
 </div>
 <div class="acts">
-<sc-if value="{{r.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{r.storyUrl}}">Read the story</a></sc-if>
+<sc-if value="{{r.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{r.storyUrl}}" target="_blank" rel="noopener">Read the story</a></sc-if>
 <sc-if value="{{r.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" data-bd-l="{{r.reviewUrl}}">{{r.reviewLabel}}</a></sc-if>
 <sc-if value="{{r.hasAddr}}" hint-placeholder-val="{{ true }}"><a class="act" data-bd-l="{{r.mapUrl}}">Directions</a></sc-if>
 <sc-if value="{{r.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" data-bd-l="{{r.link}}">{{r.linkLabel}}</a></sc-if>
@@ -757,7 +757,7 @@ Draw a card
 </div>
 </sc-if>
 <div class="acts">
-<sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{d.storyUrl}}">{{d.storyLabel}}</a></sc-if>
+<sc-if value="{{d.hasStory}}" hint-placeholder-val="{{ false }}"><a class="act story" data-bd-l="{{d.storyUrl}}" target="_blank" rel="noopener">{{d.storyLabel}}</a></sc-if>
 <sc-if value="{{d.hasReview}}" hint-placeholder-val="{{ false }}"><a class="act rev" data-bd-l="{{d.reviewUrl}}">{{d.reviewLabel}}</a></sc-if>
 <sc-if value="{{d.hasLink}}" hint-placeholder-val="{{ false }}"><a class="act" data-bd-l="{{d.link}}">{{d.linkLabel}}</a></sc-if>
 </div>
