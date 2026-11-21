@@ -77,6 +77,8 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .howto-link{align-self:flex-start;font:700 12px/1 "Futura Std","Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#B00E28;text-decoration:none;border-bottom:1px solid #C9AD6B;padding-bottom:4px;margin-left:58px}.howto-link:hover{color:#17171A}
 .rules{scroll-margin-top:16px}
 .step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start}
+/* Embedded in dmagazine.com the theme (style.min.css) has its own .step component (margins, padding, shadow, radius). Revert everything it sets on our .step, then re-declare ours; #dc-root outranks the theme's class selector. */
+#dc-root .step{all:revert;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;align-items:start}
 .step-n{width:44px;height:44px;border:1px solid #C9AD6B;display:flex;align-items:center;justify-content:center;font:700 22px/1 'Tungsten Comp','Arial Narrow',sans-serif;color:#7A6128}
 .step h3{margin:2px 0 4px;font:700 20px/1.1 'Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:#17171A}
 .step p{margin:0;font-size:15px;line-height:1.5;color:#4A4540}
@@ -105,7 +107,7 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .vt button.is-on{background:#FBF8F1;color:#17171A}
 .vt button:focus-visible{outline-offset:-4px}
 .search{display:flex;align-items:center;gap:8px;min-height:36px;padding:0 12px;border:1px solid rgba(201,173,107,.5);border-radius:2px;background:rgba(255,255,255,.06);color:#C9AD6B;flex:0 1 260px}
-.search input{flex:1;min-width:0;border:0;background:transparent;color:#FBF8F1;font:400 14px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;height:34px;outline:none}
+.search input{flex:1;min-width:0;padding:1px 2px;border:0;background:transparent;color:#FBF8F1;font:400 14px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;height:34px;outline:none}
 .search input::placeholder{color:#B9AE97}
 .search:focus-within{outline:3px solid #E9CF8E;outline-offset:2px}
 .mini{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 14px;border-radius:2px;border:1px solid #C9AD6B;background:transparent;color:#F1E9D8;font:600 13px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
@@ -236,7 +238,7 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .jform .btn{width:100%}
 .jform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 .jform .jerr{margin:0;font:600 13px/1.3 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;color:#FFE3A8}
-.jlink{color:#FDE7E8;font-size:13px}.jlink:hover{color:#fff}
+.jlink{color:#FDE7E8;font-size:13px;text-decoration:underline}.jlink:hover{color:#fff}
 .joker-sub img{width:44%;align-self:flex-end;transform:rotate(5deg);box-shadow:0 10px 24px rgba(0,0,0,.5);margin:-4px 4px 4px 0}
 .joker-sub h3{color:#141A30}
 .joker-sub .btn{margin-top:auto;background:#141A30;color:#F1E9D8}.joker-sub .btn:hover{background:#26305A;color:#fff}
@@ -832,6 +834,11 @@ function appUrl(u) { return (typeof u === 'string' && u.charAt(0) === '/' && u.c
     var st = document.createElement('style');
     st.textContent = f('Tungsten XComp', 'TungstenXComp-Bold.otf', 700) + f('Tungsten Comp', 'TungstenComp-Bold.otf', 700) + f('Tungsten Comp', 'TungstenComp-Semibold.otf', 600) + f('Tungsten Cond', 'TungstenCond-Medium.otf', 500) + f('Futura Std', 'FuturaStd-Book.otf', 400) + f('Futura Std', 'FuturaStd-Bold.otf', 700);
     (document.body || document.head).appendChild(st);
+    // These faces are declared late, so fitNames() may have measured with the fallback font: re-fit once they have really loaded.
+    if (document.fonts && document.fonts.load) {
+      Promise.all([document.fonts.load("500 20px 'Tungsten Cond'"), document.fonts.load("700 20px 'Tungsten Comp'"), document.fonts.load("400 16px 'Futura Std'"), document.fonts.load("700 16px 'Futura Std'")])
+        .then(function () { window.dispatchEvent(new Event('resize')); }).catch(function () {});
+    }
   } catch (e) {}
 })();
 var DATA_URL = appUrl('/data/winners.json');
