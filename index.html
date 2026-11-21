@@ -149,8 +149,9 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .card .face .nm{font:500 calc(min(52px,18.4cqw)*var(--k,1))/1.05 'Tungsten Cond','Arial Narrow',sans-serif;letter-spacing:0;font-synthesis:none;text-transform:none}
 .card .face .plate .nm{font-size:calc(min(42px,14.9cqw)*var(--k,1))}
 .card .face.back .nm{font-size:calc(min(42px,17cqw)*var(--k,1))}
-.card .plate{max-width:calc(100% - 28px)}
-@media (max-width:600px){.card .plate{max-width:calc(100% - 16px)}}
+/* the plate must stop before the bottom-right index ("D" + pip), which starts about 19cqw from the card's right edge */
+.card .plate{max-width:calc(100% - 14px - 19cqw)}
+@media (max-width:600px){.card .plate{max-width:calc(100% - 8px - 19cqw)}}
 
 /* hero: centered left column */
 .hero-grid>div:first-child{text-align:center}
@@ -1414,7 +1415,7 @@ class Component extends DCLogic {
       isWinner: true, isNews: false, isSub: false, isAd: false, slotCls: 'slot',
       cardCls: 'card' + (flipped ? ' is-flipped' : ''),
       frontCls: 'face front ' + kind + (red ? ' is-red' : ' is-ink'),
-      isArt: !!it.img, notArt: !it.img, isPhoto: it.it === 'photo', isPlain: !it.img,
+      isArt: !!it.img, notArt: !it.img, isPhoto: !!it.img && it.it !== 'card', isPlain: !it.img,
       img: it.img || '', pip: PIP[it.s], gpip: GPIP[it.s],
       slug: it.slug, anchor: 'w-' + it.slug, href: '#w-' + it.slug,
       alt: it.nt + ', ' + it.c + ' — The Best of Big D 2026',
