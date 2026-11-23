@@ -130,6 +130,8 @@ div div a{color:#B00E28}div div a:hover{color:#7A0A14}
 .tk-calopts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .tk-opt{display:inline-flex;align-items:center;min-height:38px;padding:0 14px;border-radius:2px;border:1px solid rgba(244,230,194,.55);background:rgba(20,26,48,.28);color:#fff;font:600 12px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer}
 .tk-opt:hover{background:rgba(20,26,48,.55);color:#fff;border-color:#fff}
+.tk-no{display:inline-flex;align-items:center;min-height:44px;margin:12px 0 -12px -6px;padding:0 6px;background:none;border:0;border-radius:2px;color:#F4E6C2;font:600 14px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.04em;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.tk-no:hover{color:#fff}
 .tk-stub{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px 16px;background:rgba(20,26,48,.30);border-left:2px dashed rgba(233,207,142,.6);text-align:center}
 .tk-stub small{font:700 11px/1 'Futura Std',Futura,'Century Gothic',system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#E9CF8E}
 .tk-stub .tk-pips{display:grid;grid-template-columns:repeat(2,30px);gap:10px}
@@ -778,6 +780,7 @@ Draw a card
 <button type="button" class="tk-opt" onClick="{{calIcs}}">Apple / Outlook (.ics)</button>
 </div>
 </sc-if>
+<button type="button" class="tk-no" onClick="{{closePromo}}">No thanks</button>
 </div>
 <div class="tk-stub" aria-hidden="true">
 <small>Admit one</small>
