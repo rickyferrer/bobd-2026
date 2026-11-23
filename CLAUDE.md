@@ -4,7 +4,7 @@ This file is read automatically by every Claude Code session in this repo.
 
 ## Who and what
 
-Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive "deck of cards" feature for **The Best of Big D 2026**: 180 winners in four suits (spades Culture, hearts Food & Dining, diamonds Shopping & Services, clubs Drinks & Nightlife). The launch event is Dec 3, 2026 at Astoria Event Venue. The page publishes around Nov 30.
+Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive "deck of cards" feature for **The Best of Big D 2026**: 180 winners in four suits (spades Culture, hearts Food & Dining, diamonds Shopping & Services, clubs Drinks & Nightlife). The launch event is Dec 3, 2026 at Astoria Event Venue. The page publishes around Nov 30 (the on-page "Published" date was set to Nov 23, 2026 at Ricky's request).
 
 **The GitHub repo is the source of truth:** `rickyferrer/bobd-2026` (branch `main`). Vercel deploys it automatically on every push, to `bobd-2026.vercel.app` (team "D Magazine", **Hobby plan**). The earlier Claude Design canvas artifact is retired and out of date.
 
