@@ -23,11 +23,11 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 | `scripts/make-support-inline-safe.js` | Plain-Node step that rewrites `<!--`, `<script`, `</script`, `<x-dc` and `</x-dc` to `\x3C...` inside support.js's string and regex literals (12 places), so a host can paste the file into a `<script>` tag, and prepends/updates the logic bridge (below). Verifies the result still compiles. |
 | `data/winners.json` | 180 winners. `sl` (story link) was filled from the editors' "Recirc Link" spreadsheets on Nov 18 (95 winners); `REVIEWS`/`STORIES` in `index.html` still win/augment for a few. Fields: `id, s (suit S/H/D/C), c (category), n (name, ALL CAPS), b (blurb), a (address), u, l (link), img, v (video), rv/rl (review url/label), st/sl (story text/url), it (kind: card/photo)`. Photo card = `img` set. |
 | `assets/fonts` | Trial files for Tungsten Comp, Tungsten Cond (Medium) and Futura Std. |
-| `assets/pips`, `assets/photos`, `assets/img` | Suit pips, 28 local photos, cover and hero images. |
+| `assets/pips`, `assets/photos`, `assets/img` | Suit pips, 27 local photos, cover and hero images. |
 | `vercel.json` | `X-Robots-Tag: noindex, nofollow` until launch, immutable cache on `/assets`, 5-minute cache on `/data`, clean URLs. |
 | `README.md` | Deploy steps, HubSpot table, go-live checklist, ads notes. |
 
-87 of the photo cards point at WordPress-hosted images on `assets.dmagstatic.com` (they load fine in a normal browser; the cloud sandbox cannot reach that host). 28 are local.
+87 of the photo cards point at WordPress-hosted images on `assets.dmagstatic.com` (they load fine in a normal browser; the cloud sandbox cannot reach that host). 27 are local.
 
 ## Decisions already made (do not redo)
 
