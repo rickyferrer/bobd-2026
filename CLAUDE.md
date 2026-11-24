@@ -25,6 +25,7 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 | `assets/fonts` | Trial files for Tungsten Comp, Tungsten Cond (Medium) and Futura Std. |
 | `assets/pips`, `assets/photos`, `assets/img` | Suit pips, 27 local photos, cover and hero images. |
 | `vercel.json` | `X-Robots-Tag: noindex, nofollow` until launch, immutable cache on `/assets`, 5-minute cache on `/data`, clean URLs. |
+| `scripts/make-seo-snippet.js`, `seo/bobd-2026-seo-snippet.html` | Generator and output for the static schema.org JSON-LD (see **SEO** below). Re-run `node scripts/make-seo-snippet.js` after editing `winners.json`, `PARTY`, `PUBLISHED` or `buildLd`. |
 | `README.md` | Deploy steps, HubSpot table, go-live checklist, ads notes. |
 
 87 of the photo cards point at WordPress-hosted images on `assets.dmagstatic.com` (they load fine in a normal browser; the cloud sandbox cannot reach that host). 27 are local.
@@ -67,14 +68,21 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 
 **Newsletter signup (HubSpot Forms API v3):** portal `477347`. Posts to `https://api.hsforms.com/submissions/v3/integration/submit/{portal}/{formGuid}`, success only on HTTP 200, with a honeypot and `dataLayer` events `bobd_newsletter_signup` / `bobd_newsletter_error`. The tab maps to a contact property set to `true`: all (Full deck) = `receive_frontburner_daily_recap`, Culture = `receive_things_to_do`, Food = `receive_sidedish`, Drinks = `receive_sidedish`, Shopping = `receive_home`. One HubSpot form with an email field plus the 4 hidden property fields (blank defaults) is enough. `HS_FORM` is set to `6fb5e27b-12b2-4856-8385-fdc6a185ec8f` (Nov 18). The request was tested per tab only against a mocked endpoint (right URL, right property per tab, success and 400 messages); it has **not** been sent to the real HubSpot form yet. Unknown: how the API treats properties not on the form, and whether omitted fields leave existing values alone. Test each tab with a real email and check the contact record.
 
+**SEO / schema (Nov 24):**
+- The deck builds its JSON-LD in the browser: `buildLd(items, base)` in `index.html` (between the `bobd:ld` markers) returns one `@graph` with an Organization (D Magazine), a CollectionPage (`datePublished` = `PUBLISHED`), the ItemList of all winners, and the party as an Event (21+, 6-10 p.m. Central, VIP $150 and General Admission $95 as two Offers). Ids are `<page url without query or hash>#webpage|#winners|#party|#w-<slug>`. `injectLd` writes it to `<script id="bobd-ld">` and removes `#bobd-seo` if present.
+- **Where the script does not run there is no schema.** That is the case when the WordPress block has **SSR snapshot = Yes** (it was Yes on the www.dmagazine.com post on Nov 24; that is also why Safari users saw raw `{{d.alt}}` text, two stuck popups and no working close buttons). Keep SSR snapshot **No**. If it must stay Yes, paste `seo/bobd-2026-seo-snippet.html` (static copy of the same graph, wrapped in `<div id="bobd-seo">`) into the post's custom HTML; the script removes it when it does run, so the Event is never duplicated.
+- `PARTY.address` is `null` until Ricky supplies the street address; Google needs it for an event listing (name, startDate and location with address are required).
+- The app origin (bobd2026.dmagazine.com / Vercel) is a duplicate of the WordPress post. Indexing both splits ranking. Recommended: keep the `noindex` header in `vercel.json` permanently. Not yet decided by Ricky.
+- Ricky added the winners list as markdown in the WordPress backend (Nov 24) so Google gets static text. Unverified how the backend renders it (visible text is better than hidden text).
+
 ## Open items
 
 1. **Live-test the HubSpot signup.** `HS_FORM` is set; submit a real test email on each tab and check the contact record (do the four properties sit on the form? do omitted fields leave existing values alone?).
 2. **Make the repo private.** It was public at last check.
 3. **Vercel Hobby plan** is for non-commercial use. A promo page with ads is commercial, so move to a paid plan or another host before launch.
 4. **Licensed web fonts** for Tungsten Comp, Tungsten Cond, Futura Std and Tungsten XComp; add the XComp file.
-5. **Go-live SEO:** remove the `noindex` header in `vercel.json`, add the SEO snippet (`#bobd-seo`), exactly one `h1`, proofread data. The old SEO snippet and data JSON were generated before the review links and 115 photos were added and are stale; regenerate if needed.
-6. **Content gaps:** the event calendar entry is all-day (add a start time), the consent line under the signup was asked about and never answered, the editor intro is a draft ("DRAFT INTRO – EDITORS TO REVISE" tag), only 5 winners have a video so far (see Videos); more clips are coming.
+5. **Go-live SEO** (see **SEO** below): decide whether the app origin keeps `noindex` (recommended: yes, the WordPress post is the page to index), paste the static snippet into the WordPress backend if SSR snapshot stays Yes, add the venue street address to `PARTY.address`, set Yoast title/description, and make sure the post has exactly one `h1`. Proofread data.
+6. **Content gaps:** the consent line under the signup was asked about and never answered, the editor intro is a draft ("DRAFT INTRO – EDITORS TO REVISE" tag), only 5 winners have a video so far (see Videos); more clips are coming.
 7. **Check the 115-photo density on a phone** (it looked fine on desktop), and the crop of wide archive photos on tall cards.
 
 ## Gotchas and how to test
