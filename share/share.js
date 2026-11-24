@@ -50,7 +50,7 @@ const S = {
   oursState: 'none',             // none | loading | ok | blocked
   zoom: 1, px: 0, py: 0,
   sizeId: 'ig', kind: 'still', side: 'front',
-  fontsOK: false, busy: false,
+  fontsOK: false, busy: false, modeTouched: false, // modeTouched: the winner picked a card style themselves, so do not switch it for them
   pips: {}, back: null, logo: null, manifest: {},
 };
 const $ = (s, r = document) => r.querySelector(s);
@@ -101,11 +101,15 @@ function wrapWith(measure, text, maxW) {
   if (cur) lines.push(cur);
   return lines;
 }
+// widest single word at the current ctx.font: a word must never be split across lines, so the name shrinks until it fits
+function widestWord(ctx, text) { let m = 0; for (const w of text.split(/\s+/)) m = Math.max(m, ctx.measureText(w).width); return m; }
 // text-wrap: balance: the narrowest width that still gives the same number of lines
 function balanceWith(measure, text, maxW) {
   const lines = wrapWith(measure, text, maxW);
   if (lines.length < 2) return lines;
-  let lo = maxW * 0.4, hi = maxW;
+  // never balance narrower than the longest word, or the word would be split across lines
+  const longest = Math.max(...text.split(/\s+/).map((w) => measure(w)));
+  let lo = Math.min(maxW, Math.max(maxW * 0.4, longest)), hi = maxW;
   for (let i = 0; i < 14; i++) { const mid = (lo + hi) / 2; if (wrapWith(measure, text, mid).length === lines.length) hi = mid; else lo = mid; }
   return wrapWith(measure, text, hi);
 }
@@ -191,7 +195,7 @@ function drawPlate(ctx, W, u, cat, name) {
   for (let n = 0; n < 12; n++) {
     size = 0.085 * W * k; ctx.font = FONT_NAME(size);
     lines = balanceWith((t) => ctx.measureText(t).width, name, inner);
-    if (lines.length <= 3 || k <= 0.35) break;
+    if ((lines.length <= 3 && widestWord(ctx, name) <= inner) || k <= 0.35) break;
     k *= 0.92;
   }
   ctx.font = FONT_NAME(size);
@@ -222,7 +226,7 @@ function drawPlain(ctx, W, u, cat, name, tlBottom) {
     size = 0.115 * W * k; ctx.font = FONT_NAME(size);
     lines = balanceWith((t) => ctx.measureText(t).width, name, inner);
     blockH = labH + 8 * u + lines.length * size * NAME_LH;
-    if ((lines.length <= 5 && blockH <= maxH) || k <= 0.35) break;
+    if ((lines.length <= 5 && blockH <= maxH && widestWord(ctx, name) <= inner) || k <= 0.35) break;
     k *= 0.92;
   }
   let y = H / 2 - blockH / 2;
@@ -469,7 +473,7 @@ function renderList(filter) {
   if (!any) { const n = document.createElement('div'); n.className = 'none'; n.textContent = 'No match. Check the spelling, or try just the first word.'; el.list.appendChild(n); }
 }
 async function pick(w) {
-  S.cur = w; S.photo = null; S.ours = null; S.oursState = 'none'; S.zoom = 1; S.px = 0; S.py = 0; S.mode = 'text'; S.kind = 'still'; S.side = 'front';
+  S.cur = w; S.photo = null; S.ours = null; S.oursState = 'none'; S.zoom = 1; S.px = 0; S.py = 0; S.mode = 'text'; S.modeTouched = false; S.kind = 'still'; S.side = 'front';
   $('input[name=mode][value=text]').checked = true; $('input[name=kind][value=still]').checked = true; $('input[name=side][value=front]').checked = true;
   el.zoom.value = 1; el.fileBtn.textContent = 'Choose a photo'; el.file.value = ''; // so the same file can be chosen again for the next winner
   el.list.querySelectorAll('.opt').forEach((b) => b.setAttribute('aria-pressed', b.dataset.id == w.id ? 'true' : 'false'));
@@ -484,7 +488,10 @@ async function pick(w) {
     // 2) otherwise the original, which only works if its host sends CORS headers
     const local = S.manifest[w.img];
     const src = local || (/^https?:/.test(w.img) ? w.img : '..' + w.img);
-    loadImage(src, !local).then((im) => { if (S.cur !== w) return; S.ours = im; S.oursState = 'ok'; oursInput.disabled = false; el.oursNote.hidden = true; refresh(); })
+    loadImage(src, !local).then((im) => { if (S.cur !== w) return; S.ours = im; S.oursState = 'ok'; oursInput.disabled = false; el.oursNote.hidden = true;
+      // default to our photo whenever we have one (the winner can still switch)
+      if (!S.modeTouched) { S.mode = 'ours'; oursInput.checked = true; }
+      refresh(); })
       .catch(() => { if (S.cur !== w) return; S.oursState = 'blocked'; oursInput.disabled = true; el.oursNote.hidden = false; el.oursNote.textContent = 'We can not use our photo directly here. '; const a = document.createElement('a'); a.href = w.img; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open our photo'; el.oursNote.append(a, ' in a new tab, save it, then choose My photo and upload it.'); });
   } else { oursInput.disabled = true; el.oursNote.hidden = false; el.oursNote.textContent = 'We do not have a photo for this listing. Choose text only, or upload your own.'; }
   refresh();
@@ -550,7 +557,7 @@ async function start() {
 
   document.addEventListener('change', (e) => {
     const t = e.target;
-    if (t.name === 'mode') { S.mode = t.value; refresh(); }
+    if (t.name === 'mode') { S.mode = t.value; S.modeTouched = true; refresh(); }
     else if (t.name === 'kind') { S.kind = t.value; refresh(); }
     else if (t.name === 'side') { S.side = t.value; refresh(); }
     else if (t.name === 'size') { S.sizeId = t.value; refresh(); }
