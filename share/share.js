@@ -258,7 +258,7 @@ function faceKind() {
 }
 function activePhoto() { return S.mode === 'upload' ? S.photo : S.ours; }
 
-function buildFront(cw) {
+function buildFront(cw, opts) {
   const ch = Math.round(cw * RATIO), c = mk(cw, ch), ctx = c.getContext('2d'), W = c.width, u = W / REF;
   const it = S.cur, name = it.dn, kind = faceKind();
   ctx.save(); rr(ctx, 0, 0, W, c.height, 14 * u); ctx.clip();
@@ -280,6 +280,10 @@ function buildFront(cw) {
     ctx.globalAlpha = 0.07; ctx.drawImage(S.pips[it.s], (W - wm) / 2, (c.height - wm) / 2, wm, wm); ctx.globalAlpha = 1;
     const tl = drawIdx(ctx, W, u, 'B', it.s, 'tl', false); drawIdx(ctx, W, u, 'D', it.s, 'br', false);
     drawPlain(ctx, W, u, it.c, name, tl);
+  }
+  if (opts && opts.logo) { // "Card only" stills: the D logo, small and centred near the top, level with the corner B
+    const lh = 0.062 * W, lw = lh * (S.logo.naturalWidth / S.logo.naturalHeight);
+    ctx.drawImage(S.logo, (W - lw) / 2, 0.092 * W, lw, lh);
   }
   ctx.restore();
   return c;
@@ -331,6 +335,10 @@ function paintScene(ctx, size, faces, opts) {
   if (bg === 'white') { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, ctx.canvas.width / sc, ctx.canvas.height / sc); }
   else ctx.clearRect(0, 0, ctx.canvas.width / sc, ctx.canvas.height / sc);
   if (size.layout === 'landscape') drawLandscapeText(ctx, size, card);
+  if (opts.still && size.layout === 'portrait') { // Instagram still: the D logo, small and centred in the margin above the card
+    const lh = 0.048 * size.h, lw = lh * (S.logo.naturalWidth / S.logo.naturalHeight);
+    ctx.drawImage(S.logo, (size.w - lw) / 2, (card.y - lh) / 2, lw, lh);
+  }
   const face = fs.back ? faces.back : faces.front;
   const w = card.w * fs.sx, x = card.x + (card.w - w) / 2;
   if (size.layout !== 'card') { ctx.shadowColor = 'rgba(20,26,48,.30)'; ctx.shadowBlur = 36 * (card.h / 1000); ctx.shadowOffsetY = 14 * (card.h / 1000); }
@@ -357,9 +365,11 @@ function flipState(t) {
 let raf = 0, faces = null, facesKey = '';
 const curSize = () => SIZES.find((s) => s.id === S.sizeId);
 function previewScale(size) { return Math.min(1, 1000 / size.w); }
+// "Card only" stills carry the logo on the card's front face
+const cardLogo = (size) => S.kind === 'still' && size.layout === 'card';
 function facesFor(cardPx) {
-  const key = [cardPx, S.cur && S.cur.id, S.mode, S.zoom.toFixed(3), S.px.toFixed(3), S.py.toFixed(3), S.photo && S.photo.width, S.ours && S.ours.src].join('|');
-  if (key !== facesKey) { faces = { front: buildFront(cardPx), back: buildBack(cardPx) }; facesKey = key; }
+  const key = [cardPx, cardLogo(curSize()), S.cur && S.cur.id, S.mode, S.zoom.toFixed(3), S.px.toFixed(3), S.py.toFixed(3), S.photo && S.photo.width, S.ours && S.ours.src].join('|');
+  if (key !== facesKey) { faces = { front: buildFront(cardPx, { logo: cardLogo(curSize()) }), back: buildBack(cardPx) }; facesKey = key; }
   return faces;
 }
 function draw() {
@@ -374,9 +384,9 @@ function draw() {
   el.dims.textContent = `${size.w} × ${size.h} px` + (S.kind === 'anim' ? ' · animated' : '');
   if (S.kind === 'anim') {
     const t0 = performance.now();
-    const tick = () => { paintScene(ctx, size, f, { bg, scale: sc, b: 0, fs: flipState((performance.now() - t0) / 1000) }); raf = requestAnimationFrame(tick); };
+    const tick = () => { paintScene(ctx, size, f, { bg, scale: sc, b: 0, still: false, fs: flipState((performance.now() - t0) / 1000) }); raf = requestAnimationFrame(tick); };
     tick();
-  } else paintScene(ctx, size, f, { bg, scale: sc, b: 0, fs: STATIC(S.side) });
+  } else paintScene(ctx, size, f, { bg, scale: sc, b: 0, still: true, fs: STATIC(S.side) });
 }
 
 /* ------------------------------------------------------------------ exporting */
@@ -393,12 +403,12 @@ function toBlob(canvas, type, q) {
 async function exportStill(bg) {
   const size = curSize(), d = canvasDims(size, bg);
   const c = mk(d.w, d.h), ctx = c.getContext('2d');
-  const cw = cardRect(size, d.b).w, f = { front: buildFront(cw), back: buildBack(cw) };
-  paintScene(ctx, size, f, { bg, scale: 1, b: d.b, fs: STATIC(S.side) });
+  const cw = cardRect(size, d.b).w, f = { front: buildFront(cw, { logo: size.layout === 'card' }), back: buildBack(cw) };
+  paintScene(ctx, size, f, { bg, scale: 1, b: d.b, still: true, fs: STATIC(S.side) });
   return bg === 'white' ? toBlob(c, 'image/jpeg', 0.93) : toBlob(c, 'image/png');
 }
 function animDraw(size, sc, f) {
-  return (ctx, t) => paintScene(ctx, size, f, { bg: 'white', scale: sc, b: 0, fs: flipState(t) });
+  return (ctx, t) => paintScene(ctx, size, f, { bg: 'white', scale: sc, b: 0, still: false, fs: flipState(t) });
 }
 async function exportMp4() {
   const size = curSize(), card = cardRect(size, 0), f = { front: buildFront(card.w), back: buildBack(card.w) };
