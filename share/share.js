@@ -51,7 +51,7 @@ const S = {
   zoom: 1, px: 0, py: 0,
   sizeId: 'ig', kind: 'still', side: 'front',
   fontsOK: false, busy: false,
-  pips: {}, back: null, logo: null,
+  pips: {}, back: null, logo: null, manifest: {},
 };
 const $ = (s, r = document) => r.querySelector(s);
 const el = {};
@@ -470,8 +470,11 @@ async function pick(w) {
   const oursInput = $('input[name=mode][value=ours]');
   if (w.img) {
     S.oursState = 'loading'; oursInput.disabled = true; el.oursNote.hidden = false; el.oursNote.textContent = 'Checking for our photo of your listing…';
-    const src = /^https?:/.test(w.img) ? w.img : '..' + w.img;
-    loadImage(src, true).then((im) => { if (S.cur !== w) return; S.ours = im; S.oursState = 'ok'; oursInput.disabled = false; el.oursNote.hidden = true; refresh(); })
+    // 1) a copy kept in this repo (photos/manifest.json, made by scripts/fetch-share-photos.js; same origin, so no CORS needed)
+    // 2) otherwise the original, which only works if its host sends CORS headers
+    const local = S.manifest[w.img];
+    const src = local || (/^https?:/.test(w.img) ? w.img : '..' + w.img);
+    loadImage(src, !local).then((im) => { if (S.cur !== w) return; S.ours = im; S.oursState = 'ok'; oursInput.disabled = false; el.oursNote.hidden = true; refresh(); })
       .catch(() => { if (S.cur !== w) return; S.oursState = 'blocked'; oursInput.disabled = true; el.oursNote.hidden = false; el.oursNote.textContent = 'We can not use our photo directly here. '; const a = document.createElement('a'); a.href = w.img; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Open our photo'; el.oursNote.append(a, ' in a new tab, save it, then choose My photo and upload it.'); });
   } else { oursInput.disabled = true; el.oursNote.hidden = false; el.oursNote.textContent = 'We do not have a photo for this listing. Choose text only, or upload your own.'; }
   refresh();
@@ -561,6 +564,7 @@ async function start() {
     ...Object.entries(PIP).map(([k, u]) => loadImage(u).then((im) => { S.pips[k] = im; })),
   ]);
   S.back = back; S.logo = logo;
+  try { const r = await fetch('photos/manifest.json'); if (r.ok) S.manifest = await r.json(); } catch (e) { /* no local copies: fall back to the remote photos */ }
   const seen = {};
   S.items = data.map((it) => {
     let s = slugify(it.n) || 'winner-' + it.id; if (seen[s]) s = s + '-' + it.id; seen[s] = 1;
