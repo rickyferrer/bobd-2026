@@ -33,7 +33,7 @@ All four properties must exist as fields on the HubSpot form.
 ## Go-live checklist
 
 - Host `data/winners.json` on WordPress (or keep it here) and confirm `DATA_URL` in `index.html`.
-- WordPress: keep the block's **SSR snapshot** set to **No** (Yes strips the deck's script). The deck writes its own schema.org JSON-LD. If SSR snapshot ever has to be Yes, run `node scripts/make-seo-snippet.js` and paste `seo/bobd-2026-seo-snippet.html` into the post's custom HTML. One `h1` on the page; title and meta description in Yoast.
+- WordPress: the block works with **SSR snapshot** set to Yes or No (confirmed Yes on the live post, Nov 24). The deck writes its own schema.org JSON-LD in the browser. For crawlers that do not run JavaScript, run `node scripts/make-seo-snippet.js` and paste `seo/bobd-2026-seo-snippet.html` into the post as a Custom HTML block (the deck removes it when it runs, so there is no duplicate). One `h1` on the page; title and meta description in Yoast.
 - Blackest now loads from the Adobe Fonts kit (swa3yco); make sure the kit lists every domain this runs on. Replace the remaining trial fonts (Tungsten Comp, Futura Std) with licensed web fonts before this is public. Trial licenses usually don't allow public hosting.
 - Draft copy (intro, methodology) is marked for editors to revise.
 - Proofread winner data and title-cased names. Video embeds for DJ Alaska and Zachary J. Willis are placeholders.
