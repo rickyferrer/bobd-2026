@@ -994,17 +994,17 @@ function withAds(list, perAd, weight) {
   return out;
 }
 
-var PARTY = { title: 'The Best of Big D Party', where: 'Astoria Event Venue', address: null, startUtc: '20261204T000000Z', endUtc: '20261204T040000Z', startISO: '2026-12-03T18:00:00-06:00', endISO: '2026-12-03T22:00:00-06:00', url: 'https://www.dmagazine.com/awards_and_events/best-of-big-d-2026_event/', desc: 'Celebrate this year’s Best of Big D winners in person. 21+ only. VIP ($150) is 6–7 p.m. with early entry and first access to food, drinks and priority bar service; General Admission ($95) is 7–10 p.m. and includes a one-year subscription to D Magazine. Tickets and details: ', tiers: [{ name: 'VIP', price: '150', desc: '6–7 p.m. VIP tickets include everything in General Admission plus early entry, first access to all food and drinks, priority bar service throughout the night, and access to exclusive VIP activations and experiences.' }, { name: 'General Admission', price: '95', desc: '7–10 p.m. General Admission gives you a taste of the full deck, from food and drinks to shopping, entertainment and immersive experiences, plus a one-year subscription to D Magazine.' }] };
-/* PARTY.address: a schema.org PostalAddress, e.g. { streetAddress: '...', addressLocality: 'Dallas', addressRegion: 'TX', postalCode: '...', addressCountry: 'US' }. Google needs it for an event listing. */
+var PARTY = { title: 'The Best of Big D Party', where: 'Astoria Event Venue', whereFull: 'Astoria Event Venue, 3216 Royalty Row, Irving, TX 75062', address: { streetAddress: '3216 Royalty Row', addressLocality: 'Irving', addressRegion: 'TX', postalCode: '75062', addressCountry: 'US' }, startUtc: '20261204T000000Z', endUtc: '20261204T040000Z', startISO: '2026-12-03T18:00:00-06:00', endISO: '2026-12-03T22:00:00-06:00', url: 'https://www.dmagazine.com/awards_and_events/best-of-big-d-2026_event/', desc: 'Celebrate this year’s Best of Big D winners in person. 21+ only. VIP ($150) is 6–7 p.m. with early entry and first access to food, drinks and priority bar service; General Admission ($95) is 7–10 p.m. and includes a one-year subscription to D Magazine. Tickets and details: ', tiers: [{ name: 'VIP', price: '150', desc: '6–7 p.m. VIP tickets include everything in General Admission plus early entry, first access to all food and drinks, priority bar service throughout the night, and access to exclusive VIP activations and experiences.' }, { name: 'General Admission', price: '95', desc: '7–10 p.m. General Admission gives you a taste of the full deck, from food and drinks to shopping, entertainment and immersive experiences, plus a one-year subscription to D Magazine.' }] };
+/* PARTY.address is a schema.org PostalAddress (Google needs it for an event listing); PARTY.whereFull is the one-line version used in the calendar link and .ics. */
 function googleCalUrl() {
-  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(PARTY.title) + '&dates=' + PARTY.startUtc + '/' + PARTY.endUtc + '&details=' + encodeURIComponent(PARTY.desc + PARTY.url) + '&location=' + encodeURIComponent(PARTY.where);
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + encodeURIComponent(PARTY.title) + '&dates=' + PARTY.startUtc + '/' + PARTY.endUtc + '&details=' + encodeURIComponent(PARTY.desc + PARTY.url) + '&location=' + encodeURIComponent(PARTY.whereFull);
 }
 function buildIcs() {
   var esc = function (t) { return String(t).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n'); };
   var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
   return ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//D Magazine//Best of Big D 2026//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
     'UID:bobd-party-2026@dmagazine.com', 'DTSTAMP:' + stamp, 'DTSTART:' + PARTY.startUtc, 'DTEND:' + PARTY.endUtc,
-    'SUMMARY:' + esc(PARTY.title), 'LOCATION:' + esc(PARTY.where), 'DESCRIPTION:' + esc(PARTY.desc + PARTY.url), 'URL:' + PARTY.url,
+    'SUMMARY:' + esc(PARTY.title), 'LOCATION:' + esc(PARTY.whereFull), 'DESCRIPTION:' + esc(PARTY.desc + PARTY.url), 'URL:' + PARTY.url,
     'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
 }
 function fitNames() {

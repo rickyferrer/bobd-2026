@@ -24,7 +24,7 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 | `data/winners.json` | 180 winners. `sl` (story link) was filled from the editors' "Recirc Link" spreadsheets on Nov 18 (95 winners); `REVIEWS`/`STORIES` in `index.html` still win/augment for a few. Fields: `id, s (suit S/H/D/C), c (category), n (name, ALL CAPS), b (blurb), a (address), u, l (link), img, v (video), rv/rl (review url/label), st/sl (story text/url), it (kind: card/photo)`. Photo card = `img` set. |
 | `assets/fonts` | Trial files for Tungsten Comp, Tungsten Cond (Medium) and Futura Std. |
 | `assets/pips`, `assets/photos`, `assets/img` | Suit pips, 27 local photos, cover and hero images. |
-| `vercel.json` | `X-Robots-Tag: noindex, nofollow` until launch, immutable cache on `/assets`, 5-minute cache on `/data`, clean URLs. |
+| `vercel.json` | `X-Robots-Tag: noindex, nofollow` (keep it permanently, see SEO), immutable cache on `/assets`, 5-minute cache on `/data`, clean URLs. |
 | `scripts/make-seo-snippet.js`, `seo/bobd-2026-seo-snippet.html` | Generator and output for the static schema.org JSON-LD (see **SEO** below). Re-run `node scripts/make-seo-snippet.js` after editing `winners.json`, `PARTY`, `PUBLISHED` or `buildLd`. |
 | `README.md` | Deploy steps, HubSpot table, go-live checklist, ads notes. |
 
@@ -70,9 +70,9 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 
 **SEO / schema (Nov 24):**
 - The deck builds its JSON-LD in the browser: `buildLd(items, base)` in `index.html` (between the `bobd:ld` markers) returns one `@graph` with an Organization (D Magazine), a CollectionPage (`datePublished` = `PUBLISHED`), the ItemList of all winners, and the party as an Event (21+, 6-10 p.m. Central, VIP $150 and General Admission $95 as two Offers). Ids are `<page url without query or hash>#webpage|#winners|#party|#w-<slug>`. `injectLd` writes it to `<script id="bobd-ld">` and removes `#bobd-seo` if present.
-- **Where the script does not run there is no schema.** That is the case when the WordPress block has **SSR snapshot = Yes** (it was Yes on the www.dmagazine.com post on Nov 24; that is also why Safari users saw raw `{{d.alt}}` text, two stuck popups and no working close buttons). Keep SSR snapshot **No**. If it must stay Yes, paste `seo/bobd-2026-seo-snippet.html` (static copy of the same graph, wrapped in `<div id="bobd-seo">`) into the post's custom HTML; the script removes it when it does run, so the Event is never duplicated.
-- `PARTY.address` is `null` until Ricky supplies the street address; Google needs it for an event listing (name, startDate and location with address are required).
-- The app origin (bobd2026.dmagazine.com / Vercel) is a duplicate of the WordPress post. Indexing both splits ranking. Recommended: keep the `noindex` header in `vercel.json` permanently. Not yet decided by Ricky.
+- **Where the script does not run there is no schema.** The WordPress block on the www.dmagazine.com post had **SSR snapshot = Yes** on Nov 24 (seen in the backend). Earlier tests on dev.dmagazine.com showed Yes strips the deck's client JS (static markup only), so SSR snapshot should be **No**; what the live post shows with Yes is **not verified**. (A Safari screenshot of raw `{{d.alt}}` text, two stuck popups and broken fonts on Nov 24 turned out to be a DNS problem on the office wifi, not the block settings.) If it must stay Yes, paste `seo/bobd-2026-seo-snippet.html` (static copy of the same graph, wrapped in `<div id="bobd-seo">`) into the post's custom HTML; the script removes it when it does run, so the Event is never duplicated.
+- Venue: Astoria Event Venue, 3216 Royalty Row, Irving, TX 75062 (Ricky, Nov 24). It is in `PARTY.address` (schema) and `PARTY.whereFull` (calendar link and .ics).
+- The app origin (bobd2026.dmagazine.com / Vercel) is a duplicate of the WordPress post. Indexing both splits ranking, so keep the `X-Robots-Tag: noindex, nofollow` header in `vercel.json` permanently (it applies to every path on the app origin; it does not affect the WordPress post). Do not block the app origin in a robots.txt, or crawlers cannot see the noindex. Yoast on the post already has a title and meta description.
 - Ricky added the winners list as markdown in the WordPress backend (Nov 24) so Google gets static text. Unverified how the backend renders it (visible text is better than hidden text).
 
 ## Open items
@@ -81,7 +81,7 @@ Ricky Ferrer is VP Digital Product at D Magazine. He is building the interactive
 2. **Make the repo private.** It was public at last check.
 3. **Vercel Hobby plan** is for non-commercial use. A promo page with ads is commercial, so move to a paid plan or another host before launch.
 4. **Licensed web fonts** for Tungsten Comp, Tungsten Cond, Futura Std and Tungsten XComp; add the XComp file.
-5. **Go-live SEO** (see **SEO** below): decide whether the app origin keeps `noindex` (recommended: yes, the WordPress post is the page to index), paste the static snippet into the WordPress backend if SSR snapshot stays Yes, add the venue street address to `PARTY.address`, set Yoast title/description, and make sure the post has exactly one `h1`. Proofread data.
+5. **Go-live SEO** (see **SEO** below): keep `noindex` on the app origin (see SEO), paste the static snippet into the WordPress backend if SSR snapshot stays Yes, set Yoast title/description, and make sure the post has exactly one `h1`. Proofread data.
 6. **Content gaps:** the consent line under the signup was asked about and never answered, the editor intro is a draft ("DRAFT INTRO – EDITORS TO REVISE" tag), only 5 winners have a video so far (see Videos); more clips are coming.
 7. **Check the 115-photo density on a phone** (it looked fine on desktop), and the crop of wide archive photos on tall cards.
 
