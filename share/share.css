@@ -1,5 +1,4 @@
 @font-face{font-family:'Tungsten Comp';src:url(../assets/fonts/TungstenComp-Bold.otf) format('opentype');font-weight:700;font-style:normal;font-display:swap}
-@font-face{font-family:'Tungsten Cond';src:url(../assets/fonts/TungstenCond-Medium.otf) format('opentype');font-weight:500;font-style:normal;font-display:swap}
 @font-face{font-family:'Futura Std';src:url(../assets/fonts/FuturaStd-Book.otf) format('opentype');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:'Futura Std';src:url(../assets/fonts/FuturaStd-Bold.otf) format('opentype');font-weight:700;font-style:normal;font-display:swap}
 
@@ -13,7 +12,7 @@ body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.45 'Futura St
 .top{display:flex;align-items:center;gap:16px;padding:18px 24px;background:var(--navy);color:#fff}
 .top h1{margin:0;font:700 26px/1.1 'Tungsten Comp','Arial Narrow',sans-serif;letter-spacing:.04em;text-transform:uppercase}
 .top p{margin:4px 0 0;font-size:14px;color:#E9DFC9}
-.dmark{flex:none;width:46px;height:46px;display:flex;align-items:center;justify-content:center;background:var(--red);border:2px solid var(--gold);color:#fff;font:700 30px/1 'blackest-text','blackest',Georgia,serif;padding-top:3px}
+.dlogo{flex:none;display:block;width:52px;height:auto}
 
 .layout{display:grid;grid-template-columns:minmax(300px,420px) minmax(0,1fr);gap:28px;max-width:1240px;margin:0 auto;padding:24px}
 .controls{display:flex;flex-direction:column;gap:16px}
