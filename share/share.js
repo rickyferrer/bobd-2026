@@ -285,8 +285,8 @@ function buildFront(cw, opts) {
     const tl = drawIdx(ctx, W, u, 'B', it.s, 'tl', false); drawIdx(ctx, W, u, 'D', it.s, 'br', false);
     drawPlain(ctx, W, u, it.c, name, tl);
   }
-  if (opts && opts.logo) { // "Card only" stills: the D logo, small and centred near the top, level with the corner B
-    const lh = 0.062 * W, lw = lh * (S.logo.naturalWidth / S.logo.naturalHeight);
+  if (opts && opts.logo) { // Instagram and Card only stills: the D logo, centred near the top of the card, level with the corner B
+    const lh = 0.1 * W, lw = lh * (S.logo.naturalWidth / S.logo.naturalHeight);
     ctx.drawImage(S.logo, (W - lw) / 2, 0.092 * W, lw, lh);
   }
   ctx.restore();
@@ -339,10 +339,6 @@ function paintScene(ctx, size, faces, opts) {
   if (bg === 'white') { ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, ctx.canvas.width / sc, ctx.canvas.height / sc); }
   else ctx.clearRect(0, 0, ctx.canvas.width / sc, ctx.canvas.height / sc);
   if (size.layout === 'landscape') drawLandscapeText(ctx, size, card);
-  if (opts.still && size.layout === 'portrait') { // Instagram still: the D logo, small and centred in the margin above the card
-    const lh = 0.048 * size.h, lw = lh * (S.logo.naturalWidth / S.logo.naturalHeight);
-    ctx.drawImage(S.logo, (size.w - lw) / 2, (card.y - lh) / 2, lw, lh);
-  }
   const face = fs.back ? faces.back : faces.front;
   const w = card.w * fs.sx, x = card.x + (card.w - w) / 2;
   if (size.layout !== 'card') { ctx.shadowColor = 'rgba(20,26,48,.30)'; ctx.shadowBlur = 36 * (card.h / 1000); ctx.shadowOffsetY = 14 * (card.h / 1000); }
@@ -369,8 +365,8 @@ function flipState(t) {
 let raf = 0, faces = null, facesKey = '';
 const curSize = () => SIZES.find((s) => s.id === S.sizeId);
 function previewScale(size) { return Math.min(1, 1000 / size.w); }
-// "Card only" stills carry the logo on the card's front face
-const cardLogo = (size) => S.kind === 'still' && size.layout === 'card';
+// Instagram and Card only stills carry the logo on the card's front face
+const cardLogo = (size) => S.kind === 'still' && (size.layout === 'card' || size.layout === 'portrait');
 function facesFor(cardPx) {
   const key = [cardPx, cardLogo(curSize()), S.cur && S.cur.id, S.mode, S.zoom.toFixed(3), S.px.toFixed(3), S.py.toFixed(3), S.photo && S.photo.width, S.ours && S.ours.src].join('|');
   if (key !== facesKey) { faces = { front: buildFront(cardPx, { logo: cardLogo(curSize()) }), back: buildBack(cardPx) }; facesKey = key; }
@@ -407,7 +403,7 @@ function toBlob(canvas, type, q) {
 async function exportStill(bg) {
   const size = curSize(), d = canvasDims(size, bg);
   const c = mk(d.w, d.h), ctx = c.getContext('2d');
-  const cw = cardRect(size, d.b).w, f = { front: buildFront(cw, { logo: size.layout === 'card' }), back: buildBack(cw) };
+  const cw = cardRect(size, d.b).w, f = { front: buildFront(cw, { logo: size.layout === 'card' || size.layout === 'portrait' }), back: buildBack(cw) };
   paintScene(ctx, size, f, { bg, scale: 1, b: d.b, still: true, fs: STATIC(S.side) });
   return bg === 'white' ? toBlob(c, 'image/jpeg', 0.93) : toBlob(c, 'image/png');
 }
