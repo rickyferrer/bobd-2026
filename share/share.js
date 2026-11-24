@@ -9,6 +9,7 @@ const RATIO = 875 / 640;         // card height / width
 const DATA_URL = '../data/winners.json';
 const PIP = { S: '../assets/pips/05f322ff.svg', H: '../assets/pips/758e7c02.svg', D: '../assets/pips/d8acbffb.svg', C: '../assets/pips/429bf106.svg' };
 const BACK_URL = 'img/card-back-hires.jpg';
+const LOGO_URL = 'img/d-logo.png';
 const SUITS = [['S', 'Culture'], ['H', 'Food & Dining'], ['D', 'Shopping & Services'], ['C', 'Drinks & Nightlife']];
 const RED = { H: 1, D: 1 };
 
@@ -50,7 +51,7 @@ const S = {
   zoom: 1, px: 0, py: 0,
   sizeId: 'ig', kind: 'still', side: 'front',
   fontsOK: false, busy: false,
-  pips: {}, back: null,
+  pips: {}, back: null, logo: null,
 };
 const $ = (s, r = document) => r.querySelector(s);
 const el = {};
@@ -111,7 +112,6 @@ function balanceWith(measure, text, maxW) {
 
 /* ------------------------------------------------------------------ fonts */
 const FONT_CHECKS = [
-  ['500 40px "Tungsten Cond"', 'Tungsten Cond'],
   ['700 20px "Futura Std"', 'Futura Std'],
   ['700 40px "Tungsten Comp"', 'Tungsten Comp'],
   ['700 40px "blackest-text"', 'Blackest'],
@@ -123,7 +123,8 @@ async function missingFonts() {
   }));
   return missing;
 }
-const FONT_CND = (px) => `500 ${px}px "Tungsten Cond","Arial Narrow",sans-serif`;
+const FONT_NAME = (px) => `700 ${px}px "blackest-text","blackest","Ultra",Georgia,serif`; // winner names
+const NAME_LH = 1.08;
 const FONT_LAB = (px) => `700 ${px}px "Futura Std",Futura,"Century Gothic",system-ui,sans-serif`;
 const FONT_BLK = (px) => `700 ${px}px "blackest-text","blackest","Ultra",Georgia,serif`;
 const FONT_COMP = (px) => `700 ${px}px "Tungsten Comp","Arial Narrow",sans-serif`;
@@ -188,16 +189,16 @@ function drawPlate(ctx, W, u, cat, name) {
   const labW = Math.max(...labLines.map((t) => trackedW(ctx, t, 0.18 * 10 * u)));
   let k = 1, size, lines, nameW;
   for (let n = 0; n < 12; n++) {
-    size = 0.149 * W * k; ctx.font = FONT_CND(size);
+    size = 0.085 * W * k; ctx.font = FONT_NAME(size);
     lines = balanceWith((t) => ctx.measureText(t).width, name, inner);
     if (lines.length <= 3 || k <= 0.35) break;
     k *= 0.92;
   }
-  ctx.font = FONT_CND(size);
+  ctx.font = FONT_NAME(size);
   const single = ctx.measureText(name).width;
   nameW = lines.length > 1 ? inner : Math.min(single, inner);
   const w = Math.min(maxW, Math.max(labW, nameW) + 2 * padX);
-  const labH = labLines.length * 13 * u, nameH = lines.length * size * 1.05;
+  const labH = labLines.length * 13 * u, nameH = lines.length * size * NAME_LH;
   const h = padY * 2 + labH + 4 * u + nameH;
   const x = 14 * u, y = H - 14 * u - h;
   ctx.save();
@@ -207,8 +208,8 @@ function drawPlate(ctx, W, u, cat, name) {
   ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
   ctx.fillStyle = '#B00E28'; ctx.font = FONT_LAB(10 * u);
   labLines.forEach((t, i) => tracked(ctx, t, x + padX, y + padY + (i + 0.5) * 13 * u, 0.18 * 10 * u, 'left'));
-  ctx.fillStyle = '#17171A'; ctx.font = FONT_CND(size);
-  lines.forEach((t, i) => ctx.fillText(t, x + padX, y + padY + labH + 4 * u + (i + 0.5) * size * 1.05));
+  ctx.fillStyle = '#17171A'; ctx.font = FONT_NAME(size);
+  lines.forEach((t, i) => ctx.fillText(t, x + padX, y + padY + labH + 4 * u + (i + 0.5) * size * NAME_LH));
 }
 // centered label + name on plain (text-only) cards
 function drawPlain(ctx, W, u, cat, name, tlBottom) {
@@ -218,9 +219,9 @@ function drawPlain(ctx, W, u, cat, name, tlBottom) {
   const labH = labLines.length * 1.3 * 11 * u;
   let k = 1, size, lines, blockH;
   for (let n = 0; n < 12; n++) {
-    size = 0.184 * W * k; ctx.font = FONT_CND(size);
+    size = 0.115 * W * k; ctx.font = FONT_NAME(size);
     lines = balanceWith((t) => ctx.measureText(t).width, name, inner);
-    blockH = labH + 8 * u + lines.length * size * 1.05;
+    blockH = labH + 8 * u + lines.length * size * NAME_LH;
     if ((lines.length <= 5 && blockH <= maxH) || k <= 0.35) break;
     k *= 0.92;
   }
@@ -228,23 +229,25 @@ function drawPlain(ctx, W, u, cat, name, tlBottom) {
   ctx.textBaseline = 'middle'; ctx.fillStyle = '#B00E28'; ctx.font = FONT_LAB(11 * u);
   labLines.forEach((t, i) => tracked(ctx, t, W / 2, y + (i + 0.5) * 1.3 * 11 * u, 0.18 * 11 * u, 'center'));
   y += labH + 8 * u;
-  ctx.fillStyle = '#17171A'; ctx.font = FONT_CND(size); ctx.textAlign = 'center';
-  lines.forEach((t, i) => ctx.fillText(t, W / 2, y + (i + 0.5) * size * 1.05));
+  ctx.fillStyle = '#17171A'; ctx.font = FONT_NAME(size); ctx.textAlign = 'center';
+  lines.forEach((t, i) => ctx.fillText(t, W / 2, y + (i + 0.5) * size * NAME_LH));
 }
 function drawBack(ctx, W) {
-  const H = ctx.canvas.height, im = S.back;
-  const sc = Math.max(W / im.naturalWidth, H / im.naturalHeight), dw = im.naturalWidth * sc, dh = im.naturalHeight * sc;
-  ctx.drawImage(im, (W - dw) / 2, (H - dh) / 2, dw, dh);
-  // "We won / Best of Big D 2026" in the empty navy band under the D
+  const H = ctx.canvas.height, im = S.back, iw = im.naturalWidth, ih = im.naturalHeight;
+  const sc = Math.max(W / iw, H / ih), dw = iw * sc, dh = ih * sc, ox = (W - dw) / 2, oy = (H - dh) / 2;
+  ctx.drawImage(im, ox, oy, dw, dh);
+  // "We won / Best of Big D 2026" sits in the plain navy band between the top ornament and the D's frame.
+  // That band is y 253..604 and x 253..1174 in the 1428 x 2000 art, so everything is placed in art coordinates.
+  const Y = (v) => oy + v * sc, X = (v) => ox + v * sc, P = (v) => v * sc;
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillStyle = '#E9CF8E'; ctx.font = FONT_LAB(0.038 * W);
-  tracked(ctx, 'WE WON', W / 2, H * 0.742, 0.34 * 0.038 * W, 'center');
-  let size = 0.14 * W; ctx.font = FONT_COMP(size);
-  const text = 'BEST OF BIG D 2026', maxW = W * 0.64;
-  const tw = (s) => { ctx.font = FONT_COMP(s); return trackedW(ctx, text, 0.03 * s); };
+  ctx.fillStyle = '#E9CF8E'; ctx.font = FONT_LAB(P(46));
+  tracked(ctx, 'WE WON', X(iw / 2), Y(420), 0.34 * P(46), 'center');
+  const text = 'BEST OF BIG D 2026', maxW = P(760);
+  let size = P(150);
+  const tw = (s2) => { ctx.font = FONT_COMP(s2); return trackedW(ctx, text, 0.03 * s2); };
   while (size > 8 && tw(size) > maxW) size -= 1;
   ctx.font = FONT_COMP(size); ctx.fillStyle = '#F4E6C2';
-  tracked(ctx, text, W / 2, H * 0.8, 0.03 * size, 'center');
+  tracked(ctx, text, X(iw / 2), Y(525), 0.03 * size, 'center');
 }
 
 // Which kind of face the current choices give.
@@ -300,15 +303,15 @@ function cardRect(size, b) {
   const x = size.layout === 'portrait' ? (size.w - w) / 2 : Math.max(m, size.w * 0.1);
   return { x, y: m, w, h };
 }
-function drawDMark(ctx, x, y, s) {
-  ctx.fillStyle = '#C8102E'; ctx.fillRect(x, y, s, s);
-  ctx.lineWidth = s * 2 / 58; ctx.strokeStyle = '#C9AD6B'; ctx.strokeRect(x + ctx.lineWidth / 2, y + ctx.lineWidth / 2, s - ctx.lineWidth, s - ctx.lineWidth);
-  ctx.fillStyle = '#fff'; ctx.font = FONT_BLK(s * 38 / 58); ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-  ctx.fillText('D', x + s / 2, y + s / 2 + s * 0.06);
+// The real D logo (img/d-logo.png, 1350 x 1200). Drawn with height h; returns its width.
+function drawDMark(ctx, x, y, h) {
+  const w = h * (S.logo.naturalWidth / S.logo.naturalHeight);
+  ctx.drawImage(S.logo, x, y, w, h);
+  return w;
 }
 function drawLandscapeText(ctx, size, card) {
   const H = size.h, tx = card.x + card.w + size.w * 0.07, maxW = size.w - tx - size.h * 0.09;
-  const dm = H * 0.15, we = H * 0.036;
+  const dm = H * 0.14, we = H * 0.036;
   let big = H * 0.2; const lines = ['BEST OF', 'BIG D 2026'];
   const tw = (s) => { ctx.font = FONT_COMP(s); return Math.max(...lines.map((t) => trackedW(ctx, t, 0.03 * s))); };
   while (big > 10 && tw(big) > maxW) big -= 1;
@@ -458,7 +461,7 @@ function renderList(filter) {
 async function pick(w) {
   S.cur = w; S.photo = null; S.ours = null; S.oursState = 'none'; S.zoom = 1; S.px = 0; S.py = 0; S.mode = 'text'; S.kind = 'still'; S.side = 'front';
   $('input[name=mode][value=text]').checked = true; $('input[name=kind][value=still]').checked = true; $('input[name=side][value=front]').checked = true;
-  el.zoom.value = 1; el.fileBtn.textContent = 'Choose a photo';
+  el.zoom.value = 1; el.fileBtn.textContent = 'Choose a photo'; el.file.value = ''; // so the same file can be chosen again for the next winner
   el.list.querySelectorAll('.opt').forEach((b) => b.setAttribute('aria-pressed', b.dataset.id == w.id ? 'true' : 'false'));
   el.picked.innerHTML = ''; const bEl = document.createElement('b'); bEl.textContent = w.dn; el.picked.append(bEl, ' · ' + w.c);
   history.replaceState(null, '', '?w=' + w.slug);
@@ -551,12 +554,13 @@ async function start() {
   setButtons();
 
   // data
-  const [data, back] = await Promise.all([
+  const [data, back, logo] = await Promise.all([
     fetch(DATA_URL).then((r) => r.json()),
     loadImage(BACK_URL),
+    loadImage(LOGO_URL),
     ...Object.entries(PIP).map(([k, u]) => loadImage(u).then((im) => { S.pips[k] = im; })),
   ]);
-  S.back = back;
+  S.back = back; S.logo = logo;
   const seen = {};
   S.items = data.map((it) => {
     let s = slugify(it.n) || 'winner-' + it.id; if (seen[s]) s = s + '-' + it.id; seen[s] = 1;
