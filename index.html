@@ -920,6 +920,25 @@ function fitBlurbs() {
 var HS_PORTAL = '477347';
 var HS_FORM = '6fb5e27b-12b2-4856-8385-fdc6a185ec8f'; // HubSpot > Marketing > Forms
 // Active deck tab -> contact property set to 'true' on signup. 'all' = FrontBurner only; no extra lists.
+/* Conversion tracking (Marfeel + GA4), the way the rest of dmagazine.com reports newsletter signups.
+   The theme's util/conversion-tracking.js defines window.dmagTrackConversion(type, meta): it dedupes within 5 s, pushes
+   { event: 'dmag_conversion', conversion_type: type, ...meta } to the dataLayer (GA4) and calls Marfeel Compass
+   compass.trackConversion(type, { meta }). We call it once, only after HubSpot answers 200. If the theme script is not on the page
+   we send the same two things ourselves. Do NOT put data-mrf-conversion on our <form>: Marfeel's automatic tracking would then count
+   every submit attempt (invalid email, failed request) as well. Never put the email address in meta. */
+var MRF_CONVERSION = 'newsletter_signup_inline'; // D's types: newsletter_signup, newsletter_signup_inline, newsletter_signup_modal
+function trackConversion(type, meta) {
+  try {
+    if (typeof window.dmagTrackConversion === 'function') { window.dmagTrackConversion(type, meta); return; }
+    window.dataLayer = window.dataLayer || [];
+    var payload = { event: 'dmag_conversion', conversion_type: type };
+    Object.keys(meta).forEach(function (k) { payload[k] = meta[k]; });
+    window.dataLayer.push(payload);
+    if (window.marfeel && window.marfeel.cmd) {
+      window.marfeel.cmd.push(['compass', function (compass) { compass.trackConversion(type, { meta: meta }); }]);
+    }
+  } catch (e) {}
+}
 var HS_PROP_BY_TAB = { all: 'receive_frontburner_daily_recap', S: 'receive_things_to_do', H: 'receive_sidedish', C: 'receive_sidedish', D: 'receive_home' };
 /* ---- Google Ad Manager: 970x250 slot after every AD_EVERY grid cells, same in Cards and List view. Wild Cards count (1 cell; 2 on phones where they span both columns) so the rows before an ad end full (36 divides evenly into 2, 3 and 4 columns). ---- */
 var AD_UNIT = '/23367196308/MissEllie_horizontal';
@@ -1441,7 +1460,8 @@ class Component extends DCLogic {
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { this.setState({ joinErr: 'Please enter a valid email address.' }); return; }
     if (this._hp) { this.setState({ joined: true, joinErr: '' }); return; } // honeypot tripped: pretend success
     var prop = HS_PROP_BY_TAB[st.suit] || HS_PROP_BY_TAB.all;
-    var track = function (ok, status) { try { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ok ? 'bobd_newsletter_signup' : 'bobd_newsletter_error', bobd_tab: st.suit, bobd_list: prop, bobd_status: status }); } catch (x) {} };
+    var track = function (ok, status) { try { window.dataLayer = window.dataLayer || []; window.dataLayer.push({ event: ok ? 'bobd_newsletter_signup' : 'bobd_newsletter_error', bobd_tab: st.suit, bobd_list: prop, bobd_status: status }); } catch (x) {}
+      if (ok) trackConversion(MRF_CONVERSION, { form_id: HS_FORM, program: 'best-of-big-d-2026', list: prop, tab: st.suit }); };
     if (!HS_FORM) { try { console.warn('[BOBD] HubSpot form GUID not set; signup not sent.'); } catch (x) {} this.setState({ joined: true, joinErr: '' }); return; }
     var ctx = { pageUri: location.href.split('#')[0], pageName: document.title };
     var m = document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/);
